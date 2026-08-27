@@ -24,16 +24,15 @@ export const Header: React.FC = () => {
 
   const navLinks = [
     { href: "/", label: "HOME" },
-    { href: "/#exhibition-hall", label: "EXHIBITION" },
     { href: "/projects", label: "PROJECTS" },
     { href: "/about", label: "ABOUT" },
   ];
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
-    if (href === "/#exhibition-hall") return false;
     return pathname.startsWith(href);
   };
+
 
   return (
     <header
