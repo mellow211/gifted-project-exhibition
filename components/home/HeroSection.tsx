@@ -1,0 +1,74 @@
+import React from "react";
+import Link from "next/link";
+import { ArrowRight, Compass, Sparkles, BookOpen } from "lucide-react";
+
+export const HeroSection: React.FC = () => {
+  return (
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-surface">
+      {/* Subtle Future Lab abstract background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
+        <div className="absolute -top-40 right-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-primary/10 to-secondary/15 blur-3xl" />
+        <div className="absolute top-1/2 left-[-15%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-indigo-500/10 to-primary/5 blur-3xl" />
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `radial-gradient(#0B1020 1px, transparent 1px)`,
+            backgroundSize: "28px 28px",
+          }}
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl space-y-6">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-light border border-primary/20 text-primary text-xs font-semibold tracking-wider uppercase">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>2026 GIFTED PROJECT EXHIBITION</span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy tracking-tight leading-[1.15]">
+            생각을 탐구하고 <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              가능성을 발견하다.
+            </span>
+          </h1>
+
+          {/* Description */}
+          <p className="text-lg sm:text-xl text-navy-600 font-normal leading-relaxed max-w-2xl">
+            학생들이 질문하고, 실험하고, 만들고, 실패하며 완성한 프로젝트를 만나보세요.
+            단순한 결과물이 아닌 질문에서 성찰까지 이어지는 지적 탐구의 여정입니다.
+          </p>
+
+          {/* CTAs */}
+          <div className="pt-4 flex flex-wrap items-center gap-4">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-navy text-white text-sm font-semibold hover:bg-navy-800 shadow-card hover:shadow-hover transition-all transform hover:-translate-y-0.5"
+            >
+              <span>전시 관람하기</span>
+              <ArrowRight className="w-4 h-4 text-secondary" />
+            </Link>
+
+            <Link
+              href="#exhibition-hall"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-white text-navy-700 text-sm font-medium border border-surface-border hover:border-navy-300 shadow-subtle hover:bg-surface-muted transition-all"
+            >
+              <Compass className="w-4 h-4 text-primary" />
+              <span>전시관 둘러보기</span>
+            </Link>
+
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 px-5 py-3.5 text-xs font-medium text-navy-500 hover:text-primary transition-colors"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>전시 철학 읽기</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
