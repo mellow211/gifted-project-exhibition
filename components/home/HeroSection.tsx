@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Compass, Sparkles, BookOpen } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen } from "lucide-react";
 
 export const HeroSection: React.FC = () => {
   return (
@@ -52,18 +52,10 @@ export const HeroSection: React.FC = () => {
             </Link>
 
             <Link
-              href="#exhibition-hall"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-white text-navy-700 text-sm font-medium border border-surface-border hover:border-navy-300 shadow-subtle hover:bg-surface-muted transition-all"
-            >
-              <Compass className="w-4 h-4 text-primary" />
-              <span>전시관 둘러보기</span>
-            </Link>
-
-            <Link
               href="/about"
-              className="inline-flex items-center gap-2 px-5 py-3.5 text-xs font-medium text-navy-500 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3.5 text-xs font-semibold text-navy-600 hover:text-primary transition-colors border border-surface-border rounded-lg hover:border-navy-300 bg-white"
             >
-              <BookOpen className="w-3.5 h-3.5" />
+              <BookOpen className="w-4 h-4 text-primary" />
               <span>전시 철학 읽기</span>
             </Link>
           </div>
