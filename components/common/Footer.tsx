@@ -13,14 +13,13 @@ export const Footer: React.FC = () => {
               <div className="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-secondary border border-navy-700">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <span className="font-bold text-sm tracking-wider uppercase">
-                GIFTED PROJECT EXHIBITION
+              <span className="font-bold text-sm tracking-tight text-white">
+                대전교육정보원 정보영재교육원
               </span>
             </div>
             <p className="text-navy-300 text-sm max-w-md leading-relaxed">
-              본 전시관은 단순한 결과물 저장소가 아닙니다. 학생들이 던진 최초의 질문에서 출발하여,
-              실험과 실패, 개선의 여정을 거쳐 도달한 성찰과 새로운 가능성을 기록하는
-              <strong> 디지털 연구 전시 공간(Digital Museum × Future Lab)</strong>입니다.
+              <strong>2026 개인주제탐구발표대회 온라인 전시장</strong>은 정보영재 학생들이 던진 최초의 질문에서 출발하여,
+              실험과 실패, 개선의 여정을 거쳐 도달한 성찰과 새로운 가능성을 기록하는 디지털 연구 전시 공간입니다.
             </p>
             <div className="flex items-center gap-2 text-xs text-navy-400">
               <ShieldCheck className="w-4 h-4 text-secondary" />
@@ -98,9 +97,9 @@ export const Footer: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-navy-400 gap-4">
-          <p>© 2026 Gifted Project Exhibition. All rights reserved.</p>
+          <p>© 2026 대전교육정보원 정보영재교육원. All rights reserved.</p>
           <div className="flex items-center gap-1 text-navy-400">
-            <span>Crafted for Student Inquiries & Discoveries</span>
+            <span>2026 정보영재 개인주제탐구발표대회</span>
             <Heart className="w-3.5 h-3.5 text-rose-400 inline ml-1" />
           </div>
         </div>

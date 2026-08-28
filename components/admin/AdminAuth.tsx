@@ -75,7 +75,10 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onAuthenticated }) => {
         <div className="w-12 h-12 rounded-xl bg-navy text-secondary flex items-center justify-center mx-auto shadow-sm">
           <Shield className="w-6 h-6" />
         </div>
-        <h2 className="text-xl font-bold text-navy">전시관 관리자 보안 인증</h2>
+        <span className="text-[11px] font-bold text-primary tracking-wide">
+          대전교육정보원 정보영재교육원
+        </span>
+        <h2 className="text-xl font-bold text-navy">2026 개인주제탐구발표대회 관리자 인증</h2>
         <p className="text-xs text-navy-500">
           인가된 관리자 계정으로 로그인해야만 프로젝트 관리 콘솔에 접근할 수 있습니다.
         </p>

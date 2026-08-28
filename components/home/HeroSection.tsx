@@ -22,22 +22,22 @@ export const HeroSection: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl space-y-6">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-light border border-primary/20 text-primary text-xs font-semibold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-light border border-primary/20 text-primary text-xs font-semibold tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>2026 GIFTED PROJECT EXHIBITION</span>
+            <span>대전교육정보원 정보영재교육원</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy tracking-tight leading-[1.15]">
-            생각을 탐구하고 <br className="hidden sm:inline" />
+          <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-navy tracking-tight leading-[1.2]">
+            2026 개인주제탐구발표대회 <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              가능성을 발견하다.
+              온라인 전시장
             </span>
           </h1>
 
           {/* Description */}
-          <p className="text-lg sm:text-xl text-navy-600 font-normal leading-relaxed max-w-2xl">
-            학생들이 질문하고, 실험하고, 만들고, 실패하며 완성한 프로젝트를 만나보세요.
+          <p className="text-base sm:text-lg text-navy-600 font-normal leading-relaxed max-w-2xl">
+            대전교육정보원 정보영재교육원 학생들이 스스로 질문을 던지고, 탐구하고, 실험하며 완성한 창의적 연구 산출물을 만나보세요. 
             단순한 결과물이 아닌 질문에서 성찰까지 이어지는 지적 탐구의 여정입니다.
           </p>
 

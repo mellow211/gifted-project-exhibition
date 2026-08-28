@@ -117,12 +117,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
       {/* Header bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-surface-border">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-primary tracking-wider uppercase mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-primary tracking-wider mb-1">
             <Layers className="w-3.5 h-3.5" />
-            <span>EXHIBITION CURATOR SYSTEM</span>
+            <span>대전교육정보원 정보영재교육원</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-navy">
-            전시관 프로젝트 관리 대시보드
+            2026 개인주제탐구발표대회 관리 대시보드
           </h1>
           <p className="text-xs text-navy-400 mt-1">
             로그인 계정: <span className="font-semibold text-navy-700">{user.email}</span>

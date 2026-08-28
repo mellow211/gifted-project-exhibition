@@ -47,17 +47,17 @@ export const Header: React.FC = () => {
         <Link
           href="/"
           className="group flex items-center gap-2.5 focus-visible:outline-none"
-          aria-label="GIFTED PROJECT EXHIBITION 홈으로 이동"
+          aria-label="2026 대전교육정보원정보영재교육원 개인주제탐구발표대회 홈으로 이동"
         >
           <div className="w-8 h-8 rounded-lg bg-navy flex items-center justify-center text-white transition-transform group-hover:scale-105 shadow-sm">
             <Sparkles className="w-4 h-4 text-secondary" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-sm tracking-wider text-navy uppercase group-hover:text-primary transition-colors">
-              GIFTED PROJECT EXHIBITION
+            <span className="font-bold text-sm tracking-tight text-navy group-hover:text-primary transition-colors">
+              대전교육정보원 정보영재교육원
             </span>
-            <span className="text-[10px] text-navy-400 tracking-tight -mt-0.5">
-              영재 프로젝트 온라인 연구 전시관
+            <span className="text-[11px] text-navy-500 font-medium tracking-tight -mt-0.5">
+              2026 개인주제탐구발표대회 온라인 전시장
             </span>
           </div>
         </Link>

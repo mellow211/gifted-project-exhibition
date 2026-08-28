@@ -8,17 +8,17 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Page Hero */}
         <div className="space-y-4 text-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-light text-primary text-xs font-semibold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-light text-primary text-xs font-semibold tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>ABOUT THE EXHIBITION</span>
+            <span>대전교육정보원 정보영재교육원</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-navy tracking-tight leading-tight">
-            질문에서 시작하여 <br />
-            성찰로 완성되는 탐구의 기록
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight leading-tight">
+            2026 개인주제탐구발표대회 <br />
+            온라인 전시장 소개
           </h1>
           <p className="text-base sm:text-lg text-navy-600 leading-relaxed">
-            영재 프로젝트 디지털 연구 전시관은 학생들의 완성된 산출물뿐만 아니라,
-            <strong> 가설과 실험, 실패와 개선의 여정 전체</strong>를 전시하는 미래지향적 연구 공간입니다.
+            대전교육정보원 정보영재교육원 학생들의 완성된 산출물뿐만 아니라,
+            <strong> 가설과 실험, 실패와 개선의 여정 전체</strong>를 함께 나누는 연구 전시 공간입니다.
           </p>
         </div>
 
@@ -26,16 +26,16 @@ export default function AboutPage() {
         <div className="bg-white rounded-3xl border border-surface-border p-8 sm:p-12 shadow-card space-y-8">
           <div className="space-y-3">
             <span className="text-xs font-bold tracking-widest text-primary uppercase font-mono">
-              OUR MANIFESTO
+              EXHIBITION PURPOSE
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-navy">
-              왜 단순 자료실이 아닌 연구 전시관인가?
+              왜 개인주제탐구 온라인 전시장인가?
             </h2>
             <p className="text-sm sm:text-base text-navy-700 leading-relaxed">
-              기존의 학교 아카이브는 완성된 PDF 보고서나 발표 파일만을 다운로드하는 데 그쳤습니다.
-              그러나 진정한 영재 교육과 탐구 기반 학습(PBL)의 정수는 결과물 이전의
-              <strong> &apos;호기심에 찬 최초의 질문&apos;</strong>과, 예상치 못한 문제를 해결해 나간
-              <strong> &apos;치열한 시행착오의 과정&apos;</strong>에 있습니다.
+              정보영재 교육의 핵심은 정형화된 지식을 습득하는 데 그치지 않고,
+              학생 스스로 삶과 미래 사회에서 해결하고 싶은 문제를 발굴하여 컴퓨팅 사고력과 인공지능 기술로 풀어내는 탐구력에 있습니다.
+              본 온라인 전시장은 학생들이 던진 <strong>&apos;호기심에 찬 최초의 질문&apos;</strong>과, 예상치 못한 오류를 해결해 나간
+              <strong>&apos;치열한 시행착오와 성장 과정&apos;</strong>을 가감 없이 기록하고 공유합니다.
             </p>
           </div>
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
               RESEARCH CYCLE
             </span>
             <h2 className="text-2xl font-extrabold text-navy">
-              영재 프로젝트 탐구 사이클
+              정보영재 개인주제탐구 사이클
             </h2>
           </div>
 
