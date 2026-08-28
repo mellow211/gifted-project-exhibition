@@ -4,6 +4,7 @@ import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://display-blond-seven.vercel.app"),
   title: "2026 대전교육정보원정보영재교육원 개인주제탐구발표대회 온라인 전시장",
   description:
     "2026 대전교육정보원정보영재교육원 개인주제탐구발표대회 온라인 전시장 - 학생들이 어떤 질문에서 시작하여 탐구 과정을 거치고 실패와 성찰을 통해 새로운 가능성을 발견했는지를 만나는 디지털 연구 전시관입니다.",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     title: "2026 대전교육정보원정보영재교육원 개인주제탐구발표대회 온라인 전시장",
     description:
       "정보영재 학생들의 질문, 탐구 여정, 실패와 개선, 그리고 성찰이 담긴 2026 온라인 개인주제탐구발표대회",
-    url: "https://gifted-exhibition.edu",
+    url: "https://display-blond-seven.vercel.app",
     siteName: "2026 대전교육정보원정보영재교육원 개인주제탐구발표대회",
     images: [
       {
