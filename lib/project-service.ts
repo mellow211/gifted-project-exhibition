@@ -263,6 +263,79 @@ export async function addProjectReaction(projectId: string, reactionType: Reacti
 
 // Admin Operations
 export async function saveProject(project: Partial<Project> & { id?: string }): Promise<Project> {
+  // 1. Supabase Cloud DB Operation
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const { processes, id, ...restFields } = project;
+      let savedData: any = null;
+
+      const isValidUuid = id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+
+      if (isValidUuid) {
+        // Update existing project
+        const { data, error } = await supabase
+          .from("projects")
+          .update({
+            ...restFields,
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", id)
+          .select()
+          .single();
+        if (!error && data) {
+          savedData = data;
+        } else {
+          console.error("Supabase update error:", error);
+        }
+      } else {
+        // Insert new project (let Supabase generate UUID)
+        const { data, error } = await supabase
+          .from("projects")
+          .insert({
+            ...restFields,
+            title: restFields.title || "새 연구 프로젝트",
+            slug: restFields.slug || `project-${Date.now()}`,
+            thumbnail_url: restFields.thumbnail_url || "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80",
+            question: restFields.question || "우리는 어떤 질문에서 시작했을까요?",
+            summary: restFields.summary || "프로젝트 한 줄 요약",
+            description: restFields.description || "연구 상세 내용",
+            category: restFields.category || "AI & DATA",
+            student_display_names: restFields.student_display_names || ["학생 1"],
+            published: restFields.published ?? true,
+            featured: restFields.featured ?? false,
+            display_order: restFields.display_order ?? 99,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          })
+          .select()
+          .single();
+        if (!error && data) {
+          savedData = data;
+        } else {
+          console.error("Supabase insert error:", error);
+        }
+      }
+
+      if (savedData) {
+        if (processes && processes.length > 0) {
+          const processData = processes.map((proc, idx) => ({
+            title: proc.title,
+            description: proc.description,
+            image_url: proc.image_url,
+            project_id: savedData.id,
+            display_order: idx + 1,
+          }));
+          await supabase.from("project_process").delete().eq("project_id", savedData.id);
+          await supabase.from("project_process").insert(processData);
+        }
+        return { ...savedData, processes } as Project;
+      }
+    } catch (e) {
+      console.error("Supabase save failed:", e);
+    }
+  }
+
+  // 2. Local Fallback
   const projects = getLocalProjects();
   let updatedProject: Project;
 
@@ -318,29 +391,6 @@ export async function saveProject(project: Partial<Project> & { id?: string }): 
   }
 
   saveLocalProjects(projects);
-
-  // Sync with Supabase if configured
-  if (isSupabaseConfigured && supabase) {
-    try {
-      const { processes, ...projectFields } = updatedProject;
-      const { data, error } = await supabase.from("projects").upsert(projectFields).select().single();
-      if (!error && data) {
-        if (processes && processes.length > 0) {
-          const processData = processes.map((proc, idx) => ({
-            ...proc,
-            project_id: data.id,
-            display_order: idx + 1,
-          }));
-          await supabase.from("project_process").delete().eq("project_id", data.id);
-          await supabase.from("project_process").insert(processData);
-        }
-        return { ...data, processes } as Project;
-      }
-    } catch (e) {
-      console.error("Supabase upsert failed:", e);
-    }
-  }
-
   return updatedProject;
 }
 
