@@ -318,6 +318,29 @@ export async function saveProject(project: Partial<Project> & { id?: string }): 
   }
 
   saveLocalProjects(projects);
+
+  // Sync with Supabase if configured
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const { processes, ...projectFields } = updatedProject;
+      const { data, error } = await supabase.from("projects").upsert(projectFields).select().single();
+      if (!error && data) {
+        if (processes && processes.length > 0) {
+          const processData = processes.map((proc, idx) => ({
+            ...proc,
+            project_id: data.id,
+            display_order: idx + 1,
+          }));
+          await supabase.from("project_process").delete().eq("project_id", data.id);
+          await supabase.from("project_process").insert(processData);
+        }
+        return { ...data, processes } as Project;
+      }
+    } catch (e) {
+      console.error("Supabase upsert failed:", e);
+    }
+  }
+
   return updatedProject;
 }
 
@@ -325,33 +348,104 @@ export async function deleteProject(id: string): Promise<boolean> {
   const projects = getLocalProjects();
   const filtered = projects.filter((p) => p.id !== id);
   saveLocalProjects(filtered);
+
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const { error } = await supabase.from("projects").delete().eq("id", id);
+      if (error) console.error("Supabase delete failed:", error);
+    } catch (e) {
+      console.error("Supabase delete error:", e);
+    }
+  }
   return true;
 }
 
 export async function toggleProjectPublished(id: string): Promise<boolean> {
   const projects = getLocalProjects();
   const item = projects.find((p) => p.id === id);
+  let newStatus = false;
   if (item) {
     item.published = !item.published;
     item.updated_at = new Date().toISOString();
+    newStatus = item.published;
     saveLocalProjects(projects);
-    return item.published;
   }
-  return false;
+
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const { data } = await supabase.from("projects").select("published").eq("id", id).single();
+      if (data) {
+        newStatus = !data.published;
+        await supabase
+          .from("projects")
+          .update({ published: newStatus, updated_at: new Date().toISOString() })
+          .eq("id", id);
+      } else if (item) {
+        await supabase
+          .from("projects")
+          .update({ published: item.published, updated_at: new Date().toISOString() })
+          .eq("id", id);
+      }
+    } catch (e) {
+      console.error("Supabase toggle published failed:", e);
+    }
+  }
+  return newStatus;
 }
 
 export async function toggleProjectFeatured(id: string): Promise<boolean> {
   const projects = getLocalProjects();
   const item = projects.find((p) => p.id === id);
+  let newStatus = false;
   if (item) {
     item.featured = !item.featured;
     item.updated_at = new Date().toISOString();
+    newStatus = item.featured;
     saveLocalProjects(projects);
-    return item.featured;
   }
-  return false;
+
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const { data } = await supabase.from("projects").select("featured").eq("id", id).single();
+      if (data) {
+        newStatus = !data.featured;
+        await supabase
+          .from("projects")
+          .update({ featured: newStatus, updated_at: new Date().toISOString() })
+          .eq("id", id);
+      } else if (item) {
+        await supabase
+          .from("projects")
+          .update({ featured: item.featured, updated_at: new Date().toISOString() })
+          .eq("id", id);
+      }
+    } catch (e) {
+      console.error("Supabase toggle featured failed:", e);
+    }
+  }
+  return newStatus;
 }
 
 export async function resetToSampleData(): Promise<void> {
   saveLocalProjects(SAMPLE_PROJECTS);
+
+  if (isSupabaseConfigured && supabase) {
+    try {
+      for (const p of SAMPLE_PROJECTS) {
+        const { processes, ...projectFields } = p;
+        const { data } = await supabase.from("projects").upsert(projectFields).select().single();
+        if (data && processes && processes.length > 0) {
+          const processData = processes.map((proc, idx) => ({
+            ...proc,
+            project_id: data.id,
+            display_order: idx + 1,
+          }));
+          await supabase.from("project_process").delete().eq("project_id", data.id);
+          await supabase.from("project_process").insert(processData);
+        }
+      }
+    } catch (e) {
+      console.error("Supabase reset/seed failed:", e);
+    }
+  }
 }
