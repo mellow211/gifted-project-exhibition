@@ -39,7 +39,7 @@ export async function getAllProjects(includeUnpublished = false): Promise<Projec
         query = query.eq("published", true);
       }
       const { data, error } = await query.order("display_order", { ascending: true });
-      if (!error && data && data.length > 0) {
+      if (!error && data) {
         return data as Project[];
       }
     } catch (err) {
