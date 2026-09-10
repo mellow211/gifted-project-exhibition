@@ -161,7 +161,20 @@ export async function toggleServerProjectFeatured(id: string): Promise<boolean> 
   return item.featured;
 }
 
+export async function setAllServerProjectsPublished(published: boolean): Promise<boolean> {
+  const projects = await loadProjectsFromDisk();
+  const now = new Date().toISOString();
+  projects.forEach((p) => {
+    p.published = published;
+    (p as any).is_public = published;
+    p.updated_at = now;
+  });
+  await persistProjects(projects);
+  return true;
+}
+
 export async function resetServerProjects(): Promise<void> {
   const resetData: Project[] = JSON.parse(JSON.stringify(SAMPLE_PROJECTS));
   await persistProjects(resetData);
 }
+

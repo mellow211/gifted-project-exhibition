@@ -410,6 +410,39 @@ export async function toggleProjectFeatured(id: string): Promise<boolean> {
   return newStatus;
 }
 
+export async function setAllProjectsPublished(published: boolean): Promise<boolean> {
+  const projects = getLocalProjects();
+  const now = new Date().toISOString();
+  projects.forEach((p) => {
+    p.published = published;
+    (p as any).is_public = published;
+    p.updated_at = now;
+  });
+  saveLocalProjects(projects);
+
+  if (typeof window !== "undefined") {
+    try {
+      const res = await fetch("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "setAllPublished", payload: { published } }),
+      });
+      if (!res.ok) {
+        console.warn("Server setAllPublished response not ok");
+      }
+    } catch (e) {
+      console.warn("Failed to setAllPublished on server:", e);
+    }
+  } else {
+    try {
+      const { setAllServerProjectsPublished } = await import("./server-storage");
+      await setAllServerProjectsPublished(published);
+    } catch {}
+  }
+
+  return true;
+}
+
 export async function resetToSampleData(): Promise<void> {
   saveLocalProjects(SAMPLE_PROJECTS);
 

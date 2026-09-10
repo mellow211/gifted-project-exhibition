@@ -6,6 +6,7 @@ import {
   deleteServerProject,
   toggleServerProjectPublished,
   toggleServerProjectFeatured,
+  setAllServerProjectsPublished,
   resetServerProjects,
 } from "@/lib/server-storage";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
@@ -93,6 +94,22 @@ export async function POST(request: Request) {
           }
         }
         return NextResponse.json({ success: true, featured: newStatus });
+      }
+
+      case "setAllPublished": {
+        const targetPublished = !!payload?.published;
+        await setAllServerProjectsPublished(targetPublished);
+        if (isSupabaseConfigured && supabase) {
+          try {
+            await supabase
+              .from("projects")
+              .update({ published: targetPublished, updated_at: new Date().toISOString() })
+              .neq("id", "placeholder");
+          } catch (e) {
+            console.warn("Supabase background setAllPublished failed:", e);
+          }
+        }
+        return NextResponse.json({ success: true, published: targetPublished });
       }
 
       case "reset": {

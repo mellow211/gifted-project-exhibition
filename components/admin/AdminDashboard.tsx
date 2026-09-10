@@ -7,6 +7,7 @@ import {
   deleteProject,
   toggleProjectPublished,
   toggleProjectFeatured,
+  setAllProjectsPublished,
   resetToSampleData,
 } from "@/lib/project-service";
 import { ProjectForm } from "./ProjectForm";
@@ -82,6 +83,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
     }
   };
 
+  const handleSetAllPublished = async (published: boolean) => {
+    const actionText = published ? "모든 프로젝트를 '전체 공개'로 전환" : "모든 프로젝트를 '전체 비공개'로 전환";
+    const descText = published
+      ? "모든 프로젝트가 온라인 전시관에 즉시 노출됩니다."
+      : "모든 프로젝트가 비공개 처리되어 일반 방문자에게 노출되지 않습니다.";
+    if (confirm(`${actionText}하시겠습니까?\n(${descText})`)) {
+      setLoading(true);
+      await setAllProjectsPublished(published);
+      showToast(published ? "모든 프로젝트가 공개되었습니다." : "모든 프로젝트가 비공개 처리되었습니다.");
+      await fetchAll();
+    }
+  };
+
   if (isCreating || editingProject) {
     return (
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -130,6 +144,26 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={() => handleSetAllPublished(false)}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-amber-50 hover:bg-amber-100 text-xs font-semibold text-amber-900 border border-amber-300 transition-colors shadow-sm"
+            title="모든 프로젝트를 비공개 처리합니다."
+          >
+            <EyeOff className="w-3.5 h-3.5 text-amber-700" />
+            <span>전체 비공개</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleSetAllPublished(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-xs font-semibold text-emerald-900 border border-emerald-300 transition-colors shadow-sm"
+            title="모든 프로젝트를 공개 처리합니다."
+          >
+            <Eye className="w-3.5 h-3.5 text-emerald-700" />
+            <span>전체 공개</span>
+          </button>
+
           <button
             type="button"
             onClick={handleResetSample}
