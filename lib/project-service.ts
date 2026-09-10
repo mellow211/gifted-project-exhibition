@@ -1,10 +1,8 @@
-import { Project, ProjectFilterState, ExhibitionStats, ReactionType, ReactionCounts } from "@/types/project";
+import { Project, ProjectFilterState, ExhibitionStats } from "@/types/project";
 import { SAMPLE_PROJECTS } from "@/data/sample-projects";
 import { supabase, isSupabaseConfigured } from "./supabase";
 
 const STORAGE_KEY = "gifted_exhibition_projects_v1";
-const REACTIONS_STORAGE_KEY = "gifted_exhibition_reactions_v1";
-const USER_VOTED_KEY = "gifted_exhibition_user_reactions_v1";
 
 // Helper for local storage
 function getLocalProjects(): Project[] {
@@ -32,43 +30,73 @@ function saveLocalProjects(projects: Project[]) {
 }
 
 export async function getAllProjects(includeUnpublished = false): Promise<Project[]> {
-  if (isSupabaseConfigured && supabase) {
+  // 1. 서버 사이드 환경 (SSR / Server Component)
+  if (typeof window === "undefined") {
     try {
-      let query = supabase.from("projects").select("*, processes:project_process(*)");
-      if (!includeUnpublished) {
-        query = query.eq("published", true);
-      }
-      const { data, error } = await query.order("display_order", { ascending: true });
-      if (!error && data) {
+      const { getServerProjects } = await import("./server-storage");
+      return await getServerProjects(includeUnpublished);
+    } catch (e) {
+      console.warn("Failed to load server projects, falling back:", e);
+      return includeUnpublished ? SAMPLE_PROJECTS : SAMPLE_PROJECTS.filter((p) => p.published);
+    }
+  }
+
+  // 2. 클라이언트 사이드 환경: /api/projects 호출
+  try {
+    const res = await fetch(`/api/projects?includeUnpublished=${includeUnpublished}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        if (includeUnpublished) {
+          saveLocalProjects(data);
+        }
         return data as Project[];
       }
-    } catch (err) {
-      console.warn("Supabase fetch failed, falling back to local dataset:", err);
     }
+  } catch (err) {
+    console.warn("Client fetch /api/projects failed, fallback to local storage:", err);
   }
 
+  // 3. 네트워크 오프라인 시 로컬스토리지 fallback
   const projects = getLocalProjects();
   if (includeUnpublished) return projects;
-  return projects.filter((p) => p.published);
+  return projects.filter((p) => p.published !== false && (p as any).is_public !== false);
 }
 
-export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  if (isSupabaseConfigured && supabase) {
+export async function getProjectBySlug(slug: string, includeUnpublished = false): Promise<Project | null> {
+  // 1. 서버 사이드 환경
+  if (typeof window === "undefined") {
     try {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*, processes:project_process(*)")
-        .eq("slug", slug)
-        .single();
-      if (!error && data) return data as Project;
-    } catch (err) {
-      console.warn("Supabase getProjectBySlug failed, fallback to local:", err);
+      const { getServerProjectBySlug } = await import("./server-storage");
+      return await getServerProjectBySlug(slug, includeUnpublished);
+    } catch (e) {
+      console.warn("Failed to load server project by slug, falling back:", e);
+      const found = SAMPLE_PROJECTS.find((p) => p.slug === slug || p.id === slug);
+      if (!found) return null;
+      if (!includeUnpublished && (found.published === false || (found as any).is_public === false)) return null;
+      return found;
     }
   }
 
+  // 2. 클라이언트 사이드 환경
+  try {
+    const res = await fetch(`/api/projects?slug=${encodeURIComponent(slug)}&includeUnpublished=${includeUnpublished}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.id) {
+        return data as Project;
+      }
+    }
+  } catch (err) {
+    console.warn("Client fetch project by slug failed, fallback to local:", err);
+  }
+
+  // 3. 로컬스토리지 fallback
   const projects = getLocalProjects();
-  const found = projects.find((p) => p.slug === slug);
-  return found || null;
+  const found = projects.find((p) => p.slug === slug || p.id === slug);
+  if (!found) return null;
+  if (!includeUnpublished && (found.published === false || (found as any).is_public === false)) return null;
+  return found;
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
@@ -105,36 +133,16 @@ export async function getExhibitionStats(): Promise<ExhibitionStats> {
   const projects = await getAllProjects();
   const totalProjects = projects.length;
 
-  // Calculate unique student count
-  const allStudents = new Set<string>();
-  projects.forEach((p) => {
-    p.student_display_names.forEach((name) => allStudents.add(name));
-  });
-
   // Calculate unique categories
   const categories = new Set(projects.map((p) => p.category));
 
-  // Get total reactions
-  let totalReactions = 184; // realistic starting activity
-  if (typeof window !== "undefined") {
-    try {
-      const stored = localStorage.getItem(REACTIONS_STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        let sum = 0;
-        Object.values(parsed).forEach((r: any) => {
-          sum += (r.clap || 0) + (r.idea || 0) + (r.rocket || 0) + (r.heart || 0);
-        });
-        if (sum > 0) totalReactions += sum;
-      }
-    } catch {}
-  }
+  // 개인주제탐구발표대회는 1인 1탐구 원칙이므로 각 프로젝트당 참여학생 1명
+  const totalStudents = projects.reduce((acc, p) => acc + (p.student_display_names?.length || 1), 0);
 
   return {
     totalProjects,
-    totalStudents: Math.max(allStudents.size, 24),
+    totalStudents,
     totalFields: Math.max(categories.size, 5),
-    totalReactions,
   };
 }
 
@@ -193,154 +201,52 @@ export function filterProjects(projects: Project[], filters: ProjectFilterState)
   });
 }
 
-// Reactions Management with anti-spam tokens
-export async function getProjectReactions(projectId: string): Promise<ReactionCounts> {
-  const defaultCounts: ReactionCounts = {
-    clap: 14,
-    idea: 28,
-    rocket: 19,
-    heart: 32,
-  };
-
-  if (typeof window === "undefined") return defaultCounts;
-
-  try {
-    const stored = localStorage.getItem(REACTIONS_STORAGE_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      if (parsed[projectId]) {
-        return {
-          clap: defaultCounts.clap + (parsed[projectId].clap || 0),
-          idea: defaultCounts.idea + (parsed[projectId].idea || 0),
-          rocket: defaultCounts.rocket + (parsed[projectId].rocket || 0),
-          heart: defaultCounts.heart + (parsed[projectId].heart || 0),
-        };
-      }
-    }
-  } catch {}
-
-  return defaultCounts;
-}
-
-export async function addProjectReaction(projectId: string, reactionType: ReactionType): Promise<{ success: boolean; counts: ReactionCounts; alreadyVoted?: boolean }> {
-  if (typeof window === "undefined") {
-    return { success: false, counts: await getProjectReactions(projectId) };
-  }
-
-  // Check visitor anti-spam token for this project and reaction
-  const tokenKey = `${projectId}_${reactionType}`;
-  try {
-    const userVotes = JSON.parse(localStorage.getItem(USER_VOTED_KEY) || "{}");
-    const lastVoted = userVotes[tokenKey];
-    const now = Date.now();
-
-    // Prevent clicking more than 5 times in 1 minute
-    if (lastVoted && typeof lastVoted === "object" && lastVoted.count >= 5 && now - lastVoted.timestamp < 60000) {
-      const currentCounts = await getProjectReactions(projectId);
-      return { success: false, counts: currentCounts, alreadyVoted: true };
-    }
-
-    // Record user vote
-    const currentCount = (lastVoted?.count || 0) + 1;
-    userVotes[tokenKey] = { count: currentCount, timestamp: now };
-    localStorage.setItem(USER_VOTED_KEY, JSON.stringify(userVotes));
-
-    // Increment reaction in storage
-    const allReactions = JSON.parse(localStorage.getItem(REACTIONS_STORAGE_KEY) || "{}");
-    if (!allReactions[projectId]) {
-      allReactions[projectId] = { clap: 0, idea: 0, rocket: 0, heart: 0 };
-    }
-    allReactions[projectId][reactionType] = (allReactions[projectId][reactionType] || 0) + 1;
-    localStorage.setItem(REACTIONS_STORAGE_KEY, JSON.stringify(allReactions));
-
-    const updatedCounts = await getProjectReactions(projectId);
-    return { success: true, counts: updatedCounts };
-  } catch {
-    const currentCounts = await getProjectReactions(projectId);
-    return { success: true, counts: currentCounts };
-  }
-}
-
 // Admin Operations
 export async function saveProject(project: Partial<Project> & { id?: string }): Promise<Project> {
-  // 1. Supabase Cloud DB Operation
-  if (isSupabaseConfigured && supabase) {
+  // 1. 서버 환경
+  if (typeof window === "undefined") {
     try {
-      const { processes, id, ...restFields } = project;
-      let savedData: any = null;
-
-      const isValidUuid = id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
-
-      if (isValidUuid) {
-        // Update existing project
-        const { data, error } = await supabase
-          .from("projects")
-          .update({
-            ...restFields,
-            updated_at: new Date().toISOString(),
-          })
-          .eq("id", id)
-          .select()
-          .single();
-        if (!error && data) {
-          savedData = data;
-        } else {
-          console.error("Supabase update error:", error);
-        }
-      } else {
-        // Insert new project (let Supabase generate UUID)
-        const { data, error } = await supabase
-          .from("projects")
-          .insert({
-            ...restFields,
-            title: restFields.title || "새 연구 프로젝트",
-            slug: restFields.slug || `project-${Date.now()}`,
-            thumbnail_url: restFields.thumbnail_url || "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80",
-            question: restFields.question || "우리는 어떤 질문에서 시작했을까요?",
-            summary: restFields.summary || "프로젝트 한 줄 요약",
-            description: restFields.description || "연구 상세 내용",
-            category: restFields.category || "AI & DATA",
-            student_display_names: restFields.student_display_names || ["학생 1"],
-            published: restFields.published ?? true,
-            featured: restFields.featured ?? false,
-            display_order: restFields.display_order ?? 99,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-          })
-          .select()
-          .single();
-        if (!error && data) {
-          savedData = data;
-        } else {
-          console.error("Supabase insert error:", error);
-        }
-      }
-
-      if (savedData) {
-        if (processes && processes.length > 0) {
-          const processData = processes.map((proc, idx) => ({
-            title: proc.title,
-            description: proc.description,
-            image_url: proc.image_url,
-            project_id: savedData.id,
-            display_order: idx + 1,
-          }));
-          await supabase.from("project_process").delete().eq("project_id", savedData.id);
-          await supabase.from("project_process").insert(processData);
-        }
-        return { ...savedData, processes } as Project;
-      }
+      const { saveServerProject } = await import("./server-storage");
+      return await saveServerProject(project);
     } catch (e) {
-      console.error("Supabase save failed:", e);
+      console.warn("Server saveProject failed, fallback to memory:", e);
     }
   }
 
-  // 2. Local Fallback
+  // 2. 클라이언트 환경: /api/projects POST 호출
+  if (typeof window !== "undefined") {
+    try {
+      const res = await fetch("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "save", payload: project }),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data) {
+          const serverSaved = json.data as Project;
+          const localList = getLocalProjects();
+          const idx = localList.findIndex((p) => p.id === serverSaved.id || p.slug === serverSaved.slug);
+          if (idx >= 0) {
+            localList[idx] = serverSaved;
+          } else {
+            localList.push(serverSaved);
+          }
+          saveLocalProjects(localList);
+          return serverSaved;
+        }
+      }
+    } catch (err) {
+      console.warn("Client API saveProject failed, fallback to local storage:", err);
+    }
+  }
+
+  // 3. 로컬스토리지 fallback
   const projects = getLocalProjects();
   let updatedProject: Project;
 
   if (project.id) {
-    const index = projects.findIndex((p) => p.id === project.id);
+    const index = projects.findIndex((p) => p.id === project.id || p.slug === project.slug);
     if (index >= 0) {
       updatedProject = {
         ...projects[index],
@@ -371,7 +277,7 @@ export async function saveProject(project: Partial<Project> & { id?: string }): 
       grade: project.grade || "중학교",
       program: project.program || "영재 심화과정",
       year: project.year || 2026,
-      category: project.category || "AI & DATA",
+      category: project.category || "SW초급",
       tags: project.tags || ["탐구"],
       question: project.question || "우리는 어떤 질문에서 시작했을까요?",
       summary: project.summary || "프로젝트 한 줄 요약",
@@ -379,10 +285,12 @@ export async function saveProject(project: Partial<Project> & { id?: string }): 
       description: project.description || "연구 내용",
       reflection: project.reflection || "배운 점",
       next_question: project.next_question || "새로운 질문",
-      thumbnail_url: project.thumbnail_url || "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80",
+      thumbnail_url:
+        project.thumbnail_url ||
+        "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80",
       featured: project.featured ?? false,
       published: project.published ?? true,
-      display_order: project.display_order ?? (projects.length + 1),
+      display_order: project.display_order ?? projects.length + 1,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       processes: project.processes || [],
@@ -399,18 +307,27 @@ export async function deleteProject(id: string): Promise<boolean> {
   const filtered = projects.filter((p) => p.id !== id);
   saveLocalProjects(filtered);
 
-  if (isSupabaseConfigured && supabase) {
+  if (typeof window !== "undefined") {
     try {
-      const { error } = await supabase.from("projects").delete().eq("id", id);
-      if (error) console.error("Supabase delete failed:", error);
+      await fetch("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "delete", payload: { id } }),
+      });
     } catch (e) {
-      console.error("Supabase delete error:", e);
+      console.warn("Failed to delete project on server:", e);
     }
+  } else {
+    try {
+      const { deleteServerProject } = await import("./server-storage");
+      await deleteServerProject(id);
+    } catch {}
   }
   return true;
 }
 
 export async function toggleProjectPublished(id: string): Promise<boolean> {
+  // 로컬 상태 즉각 반영
   const projects = getLocalProjects();
   const item = projects.find((p) => p.id === id);
   let newStatus = false;
@@ -421,25 +338,34 @@ export async function toggleProjectPublished(id: string): Promise<boolean> {
     saveLocalProjects(projects);
   }
 
-  if (isSupabaseConfigured && supabase) {
+  // 서버 저장소 실시간 반영
+  if (typeof window !== "undefined") {
     try {
-      const { data } = await supabase.from("projects").select("published").eq("id", id).single();
-      if (data) {
-        newStatus = !data.published;
-        await supabase
-          .from("projects")
-          .update({ published: newStatus, updated_at: new Date().toISOString() })
-          .eq("id", id);
-      } else if (item) {
-        await supabase
-          .from("projects")
-          .update({ published: item.published, updated_at: new Date().toISOString() })
-          .eq("id", id);
+      const res = await fetch("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "togglePublished", payload: { id } }),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (typeof json.published === "boolean") {
+          newStatus = json.published;
+          if (item) {
+            item.published = newStatus;
+            saveLocalProjects(projects);
+          }
+        }
       }
     } catch (e) {
-      console.error("Supabase toggle published failed:", e);
+      console.warn("Failed to toggle published on server:", e);
     }
+  } else {
+    try {
+      const { toggleServerProjectPublished } = await import("./server-storage");
+      newStatus = await toggleServerProjectPublished(id);
+    } catch {}
   }
+
   return newStatus;
 }
 
@@ -454,48 +380,53 @@ export async function toggleProjectFeatured(id: string): Promise<boolean> {
     saveLocalProjects(projects);
   }
 
-  if (isSupabaseConfigured && supabase) {
+  if (typeof window !== "undefined") {
     try {
-      const { data } = await supabase.from("projects").select("featured").eq("id", id).single();
-      if (data) {
-        newStatus = !data.featured;
-        await supabase
-          .from("projects")
-          .update({ featured: newStatus, updated_at: new Date().toISOString() })
-          .eq("id", id);
-      } else if (item) {
-        await supabase
-          .from("projects")
-          .update({ featured: item.featured, updated_at: new Date().toISOString() })
-          .eq("id", id);
+      const res = await fetch("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "toggleFeatured", payload: { id } }),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (typeof json.featured === "boolean") {
+          newStatus = json.featured;
+          if (item) {
+            item.featured = newStatus;
+            saveLocalProjects(projects);
+          }
+        }
       }
     } catch (e) {
-      console.error("Supabase toggle featured failed:", e);
+      console.warn("Failed to toggle featured on server:", e);
     }
+  } else {
+    try {
+      const { toggleServerProjectFeatured } = await import("./server-storage");
+      newStatus = await toggleServerProjectFeatured(id);
+    } catch {}
   }
+
   return newStatus;
 }
 
 export async function resetToSampleData(): Promise<void> {
   saveLocalProjects(SAMPLE_PROJECTS);
 
-  if (isSupabaseConfigured && supabase) {
+  if (typeof window !== "undefined") {
     try {
-      for (const p of SAMPLE_PROJECTS) {
-        const { processes, ...projectFields } = p;
-        const { data } = await supabase.from("projects").upsert(projectFields).select().single();
-        if (data && processes && processes.length > 0) {
-          const processData = processes.map((proc, idx) => ({
-            ...proc,
-            project_id: data.id,
-            display_order: idx + 1,
-          }));
-          await supabase.from("project_process").delete().eq("project_id", data.id);
-          await supabase.from("project_process").insert(processData);
-        }
-      }
+      await fetch("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "reset" }),
+      });
     } catch (e) {
-      console.error("Supabase reset/seed failed:", e);
+      console.warn("Failed to reset projects on server:", e);
     }
+  } else {
+    try {
+      const { resetServerProjects } = await import("./server-storage");
+      await resetServerProjects();
+    } catch {}
   }
 }

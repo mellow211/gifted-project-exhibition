@@ -15,8 +15,7 @@
   4. `04 OUR JOURNEY`: 가설→설계→제작→실험→개선→완성 단계별 타임라인
   5. `05 PROJECT ARCHIVE`: PDF 보고서 뷰어, 발표 슬라이드, 영상 플레이어, 라이브 데모 실행
   6. `06 LEARNING & REFLECTION`: 배운 점 & 다시 탐구한다면? (Next Question)
-  7. `07 VISITOR REACTION`: 👏 멋져요, 💡 아이디어, 🚀 발전 기대, ❤️ 응원 반응
-  8. `08 MORE TO EXPLORE`: 동일 카테고리/태그 연관 추천 전시
+  7. `07 MORE TO EXPLORE`: 동일 카테고리/태그 연관 추천 전시
 - **5대 전시관 (Exhibition Halls)**:
   - `AI & DATA`: 인공지능과 데이터
   - `SOFTWARE`: 소프트웨어와 코딩
@@ -95,7 +94,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 │   ├── common/                   # Header, Footer, Badge 등
 │   ├── home/                     # HeroSection, StatsSection, FeaturedProjects, ExhibitionHall
 │   ├── projects/                 # ProjectCard, ProjectFilter, SearchBar, RandomDiscovery
-│   ├── project-detail/           # ProjectHero, Question, Why, Story, Timeline, Archive, Reflection, ReactionBar, RelatedProjects
+│   ├── project-detail/           # ProjectHero, Question, Overview, Timeline, Archive, Reflection, RelatedProjects
 │   └── admin/                    # AdminAuth, AdminDashboard, ProjectForm
 ├── data/
 │   └── sample-projects.ts        # 8개 가상 영재 프로젝트 현실적 데이터셋

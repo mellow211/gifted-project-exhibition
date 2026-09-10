@@ -67,16 +67,20 @@ export const CategoryTag: React.FC<{ category: ProjectCategory | string; classNa
 }) => {
   let colorStyle = "bg-navy-50 text-navy-700 border-surface-border";
 
-  if (category === "AI & DATA") {
+  if (category === "SW초급") {
+    colorStyle = "bg-sky-50 text-sky-700 border-sky-200";
+  } else if (category === "SW고급") {
     colorStyle = "bg-indigo-50 text-indigo-700 border-indigo-200";
+  } else if (category === "로봇초급") {
+    colorStyle = "bg-emerald-50 text-emerald-800 border-emerald-200";
+  } else if (category === "로봇고급") {
+    colorStyle = "bg-amber-50 text-amber-800 border-amber-200";
+  } else if (category === "AI" || category === "AI & DATA") {
+    colorStyle = "bg-purple-50 text-purple-800 border-purple-200";
   } else if (category === "SOFTWARE") {
     colorStyle = "bg-blue-50 text-blue-700 border-blue-200";
   } else if (category === "ROBOT & IoT") {
     colorStyle = "bg-emerald-50 text-emerald-800 border-emerald-200";
-  } else if (category === "SCIENCE") {
-    colorStyle = "bg-teal-50 text-teal-800 border-teal-200";
-  } else if (category === "CREATIVE") {
-    colorStyle = "bg-purple-50 text-purple-800 border-purple-200";
   }
 
   return (

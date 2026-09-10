@@ -33,6 +33,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
 .vercel
 supabase/.temp/
+
+# scratch and python
+scratch/
+__pycache__/
+*.pyc

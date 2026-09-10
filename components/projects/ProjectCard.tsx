@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import { Project } from "@/types/project";
 import { Badge, CategoryTag } from "@/components/common/Badge";
@@ -9,6 +11,25 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const [imgSrc, setImgSrc] = useState<string>(project.thumbnail_url);
+  const [hasFallback, setHasFallback] = useState(false);
+
+  const handleImageError = () => {
+    if (!hasFallback && project.poster_url) {
+      setHasFallback(true);
+      setImgSrc(project.poster_url);
+    } else {
+      const catFallbacks: Record<string, string> = {
+        AI: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+        로봇초급: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+        로봇고급: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+        SW초급: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+        SW고급: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+      };
+      setImgSrc(catFallbacks[project.category] || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80");
+    }
+  };
+
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -18,8 +39,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         {/* Aspect-ratio fixed thumbnail */}
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900 image-zoom-container">
           <img
-            src={project.thumbnail_url}
+            src={imgSrc}
             alt={project.title}
+            onError={handleImageError}
             className="w-full h-full object-cover"
             loading="lazy"
           />

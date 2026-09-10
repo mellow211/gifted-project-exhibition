@@ -17,7 +17,7 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
       <div className="space-y-8">
         <div>
           <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-primary uppercase mb-1">
-            <span className="font-mono text-primary font-extrabold">06</span>
+            <span className="font-mono text-primary font-extrabold">04</span>
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             <span>LEARNING & REFLECTION</span>
           </div>

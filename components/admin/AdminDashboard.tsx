@@ -75,9 +75,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
   };
 
   const handleResetSample = async () => {
-    if (confirm("샘플 영재 프로젝트 8건으로 데이터베이스를 초기화하시겠습니까?")) {
+    if (confirm("영재 프로젝트 데이터베이스를 기본 데이터로 복원하시겠습니까?")) {
       await resetToSampleData();
-      showToast("샘플 데이터로 초기화되었습니다.");
+      showToast("데이터가 복원되었습니다.");
       fetchAll();
     }
   };
@@ -220,7 +220,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
                 <th className="py-3.5 px-4">순서</th>
                 <th className="py-3.5 px-4">프로젝트 제목</th>
                 <th className="py-3.5 px-4">카테고리</th>
-                <th className="py-3.5 px-4">학생 연구진</th>
+                <th className="py-3.5 px-4">탐구 학생</th>
                 <th className="py-3.5 px-4 text-center">공개 여부</th>
                 <th className="py-3.5 px-4 text-center">Featured</th>
                 <th className="py-3.5 px-4 text-right">관리</th>
@@ -256,9 +256,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
                           />
                         </div>
                         <div>
-                          <p className="font-bold text-navy hover:text-primary transition-colors">
-                            {project.title}
-                          </p>
+                          <div className="flex items-center gap-1.5">
+                            <p className="font-bold text-navy hover:text-primary transition-colors">
+                              {project.title}
+                            </p>
+                            {!project.published && (
+                              <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                                비공개
+                              </span>
+                            )}
+                          </div>
                           <span className="text-[10px] text-navy-400 font-mono">
                             /{project.slug}
                           </span>
@@ -317,11 +324,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
 
                     <td className="py-4 px-4 text-right whitespace-nowrap space-x-2">
                       <a
-                        href={`/projects/${project.slug}`}
+                        href={`/projects/${project.slug}?preview=true`}
                         target="_blank"
                         rel="noreferrer"
                         className="inline-block p-1.5 text-navy-400 hover:text-navy hover:bg-surface-muted rounded"
-                        title="전시 페이지 미리보기"
+                        title={project.published ? "전시 페이지 미리보기" : "비공개 관리자 미리보기"}
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>

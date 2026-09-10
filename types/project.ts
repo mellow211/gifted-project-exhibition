@@ -1,9 +1,9 @@
 export type ProjectCategory =
-  | "AI & DATA"
-  | "SOFTWARE"
-  | "ROBOT & IoT"
-  | "SCIENCE"
-  | "CREATIVE";
+  | "SW초급"
+  | "SW고급"
+  | "로봇초급"
+  | "로봇고급"
+  | "AI";
 
 export type ProjectBadge =
   | "CURATOR'S PICK"
@@ -41,18 +41,25 @@ export interface Project {
   reflection: string;
   next_question: string;
   thumbnail_url: string;
+  poster_url?: string;
   report_pdf_url?: string;
   presentation_pdf_url?: string;
   presentation_original_url?: string;
+  report_url?: string;
+  manual_url?: string;
   video_url?: string;
   external_project_url?: string;
-  featured: boolean;
-  published: boolean;
+  featured?: boolean;
+  published?: boolean;
   display_order: number;
   badge?: ProjectBadge;
   created_at: string;
-  updated_at: string;
+  updated_at?: string;
   processes?: ProjectProcess[];
+  likes?: number;
+  cheers?: number;
+  bookmarks?: number;
+  is_public?: boolean;
 }
 
 export interface ReactionCounts {
@@ -75,5 +82,5 @@ export interface ExhibitionStats {
   totalProjects: number;
   totalStudents: number;
   totalFields: number;
-  totalReactions: number;
+  totalReactions?: number;
 }

@@ -3,14 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { ExhibitionStats } from "@/types/project";
 import { getExhibitionStats } from "@/lib/project-service";
-import { FolderGit2, Users, Lightbulb, Sparkles } from "lucide-react";
+import { FolderGit2, Users, Lightbulb } from "lucide-react";
 
 export const StatsSection: React.FC = () => {
   const [stats, setStats] = useState<ExhibitionStats>({
-    totalProjects: 8,
-    totalStudents: 19,
+    totalProjects: 83,
+    totalStudents: 83,
     totalFields: 5,
-    totalReactions: 194,
   });
 
   useEffect(() => {
@@ -36,18 +35,12 @@ export const StatsSection: React.FC = () => {
       sub: "탐구 학문 분야",
       icon: Lightbulb,
     },
-    {
-      value: stats.totalReactions,
-      label: "REACTIONS",
-      sub: "관람객 응원과 공감",
-      icon: Sparkles,
-    },
   ];
 
   return (
     <section className="bg-white border-y border-surface-border py-10 shadow-subtle">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-surface-border">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-surface-border">
           {items.map((item, idx) => {
             const Icon = item.icon;
             return (

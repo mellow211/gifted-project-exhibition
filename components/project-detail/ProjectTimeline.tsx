@@ -15,7 +15,7 @@ export const ProjectTimeline: React.FC<ProjectTimelineProps> = ({ processes = []
     <section className="py-12 border-b border-surface-border">
       <div className="space-y-6">
         <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-primary uppercase">
-          <span className="font-mono text-primary font-extrabold">04</span>
+          <span className="font-mono text-primary font-extrabold">03</span>
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           <span>OUR JOURNEY</span>
         </div>

@@ -34,28 +34,28 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-sm text-navy-300">
               <li>
-                <Link href="/projects?category=AI+%26+DATA" className="hover:text-white transition-colors">
-                  AI & DATA (인공지능과 데이터)
+                <Link href="/projects?category=SW초급" className="hover:text-white transition-colors">
+                  SW초급 (소프트웨어 초급)
                 </Link>
               </li>
               <li>
-                <Link href="/projects?category=SOFTWARE" className="hover:text-white transition-colors">
-                  SOFTWARE (소프트웨어)
+                <Link href="/projects?category=SW고급" className="hover:text-white transition-colors">
+                  SW고급 (소프트웨어 고급)
                 </Link>
               </li>
               <li>
-                <Link href="/projects?category=ROBOT+%26+IoT" className="hover:text-white transition-colors">
-                  ROBOT & IoT (로봇 & 컴퓨팅)
+                <Link href="/projects?category=로봇초급" className="hover:text-white transition-colors">
+                  로봇초급 (로봇 피지컬컴퓨팅)
                 </Link>
               </li>
               <li>
-                <Link href="/projects?category=SCIENCE" className="hover:text-white transition-colors">
-                  SCIENCE (과학 탐구)
+                <Link href="/projects?category=로봇고급" className="hover:text-white transition-colors">
+                  로봇고급 (로봇 메카트로닉스)
                 </Link>
               </li>
               <li>
-                <Link href="/projects?category=CREATIVE" className="hover:text-white transition-colors">
-                  CREATIVE (창의융합)
+                <Link href="/projects?category=AI" className="hover:text-white transition-colors">
+                  AI (인공지능 연구)
                 </Link>
               </li>
             </ul>

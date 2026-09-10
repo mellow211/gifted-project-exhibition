@@ -10,11 +10,11 @@ interface ProjectFilterProps {
 
 const CATEGORIES = [
   { id: "ALL", label: "전체 전시" },
-  { id: "AI & DATA", label: "AI & DATA" },
-  { id: "SOFTWARE", label: "SOFTWARE" },
-  { id: "ROBOT & IoT", label: "ROBOT & IoT" },
-  { id: "SCIENCE", label: "SCIENCE" },
-  { id: "CREATIVE", label: "CREATIVE" },
+  { id: "SW초급", label: "SW초급" },
+  { id: "SW고급", label: "SW고급" },
+  { id: "로봇초급", label: "로봇초급" },
+  { id: "로봇고급", label: "로봇고급" },
+  { id: "AI", label: "AI" },
 ];
 
 export const ProjectFilter: React.FC<ProjectFilterProps> = ({

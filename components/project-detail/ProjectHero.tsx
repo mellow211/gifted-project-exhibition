@@ -12,6 +12,24 @@ interface ProjectHeroProps {
 
 export const ProjectHero: React.FC<ProjectHeroProps> = ({ project }) => {
   const [copied, setCopied] = useState(false);
+  const [imgSrc, setImgSrc] = useState<string>(project.thumbnail_url);
+  const [fallbackAttempted, setFallbackAttempted] = useState(false);
+
+  const handleImageError = () => {
+    if (!fallbackAttempted && project.poster_url) {
+      setFallbackAttempted(true);
+      setImgSrc(project.poster_url);
+    } else {
+      const catFallbacks: Record<string, string> = {
+        AI: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+        로봇초급: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+        로봇고급: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+        SW초급: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+        SW고급: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+      };
+      setImgSrc(catFallbacks[project.category] || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80");
+    }
+  };
 
   const handleShare = async () => {
     if (typeof window !== "undefined") {
@@ -98,8 +116,8 @@ export const ProjectHero: React.FC<ProjectHeroProps> = ({ project }) => {
           <div className="flex items-center gap-1.5">
             <User className="w-3.5 h-3.5 text-secondary" />
             <span>
-              <strong>연구진:</strong> {project.team_name ? `[${project.team_name}] ` : ""}
-              {project.student_display_names.join(", ")}
+              <strong>탐구 학생:</strong> {project.team_name ? `${project.team_name} · ` : ""}
+              {project.student_display_names[0] || project.student_display_names.join(", ")}
             </span>
           </div>
 
@@ -107,14 +125,25 @@ export const ProjectHero: React.FC<ProjectHeroProps> = ({ project }) => {
             <Calendar className="w-3.5 h-3.5 text-navy-400" />
             <span>{project.grade}</span>
           </div>
+
+          {project.poster_url && (
+            <a
+              href="#archive"
+              className="sm:ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-navy-800/80 hover:bg-navy-700 text-xs font-semibold text-secondary hover:text-white border border-navy-700 transition-colors"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>작품 설명서 (A4 포스터) 보기 ↓</span>
+            </a>
+          )}
         </div>
 
         {/* Main Hero Image */}
         <div className="mt-8 rounded-2xl overflow-hidden border border-navy-700 shadow-glass aspect-[16/9] w-full max-h-[460px] bg-navy-900">
           <img
-            src={project.thumbnail_url}
+            src={imgSrc}
             alt={project.title}
-            className="w-full h-full object-cover"
+            onError={handleImageError}
+            className="w-full h-full object-cover transition-opacity duration-300"
           />
         </div>
       </div>
