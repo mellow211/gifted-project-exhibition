@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { getProjectBySlug } from "@/lib/project-service";
+import { getProjectBySlug, isProjectPublic } from "@/lib/project-service";
 import { ProjectHero } from "@/components/project-detail/ProjectHero";
 import { QuestionSection } from "@/components/project-detail/QuestionSection";
 import { OverviewSection } from "@/components/project-detail/OverviewSection";
@@ -10,6 +10,9 @@ import { ReflectionSection } from "@/components/project-detail/ReflectionSection
 import { ProjectArchive } from "@/components/project-detail/ProjectArchive";
 import { RelatedProjects } from "@/components/project-detail/RelatedProjects";
 import { EyeOff } from "lucide-react";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 interface PageProps {
   params: {
@@ -23,7 +26,7 @@ interface PageProps {
 export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const isPreview = searchParams?.preview === "true";
   const project = await getProjectBySlug(params.slug, isPreview);
-  if (!project || (!project.published && !isPreview)) {
+  if (!project || (!isProjectPublic(project) && !isPreview)) {
     return {
       title: "프로젝트를 찾을 수 없습니다 | 대전교육정보원정보영재교육원",
     };
@@ -52,14 +55,14 @@ export default async function ProjectDetailPage({ params, searchParams }: PagePr
   const project = await getProjectBySlug(params.slug, isPreview);
 
   // 비공개 프로젝트이고 관리자 미리보기 모드가 아니면 404 Not Found 처리
-  if (!project || (!project.published && !isPreview)) {
+  if (!project || (!isProjectPublic(project) && !isPreview)) {
     notFound();
   }
 
   return (
     <article className="min-h-screen bg-surface">
       {/* 관리자 비공개 미리보기 알림 배너 */}
-      {isPreview && !project.published && (
+      {isPreview && !isProjectPublic(project) && (
         <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-3 text-xs font-semibold sticky top-16 z-40 shadow-sm">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div className="flex items-center gap-2">

@@ -29,6 +29,16 @@ function saveLocalProjects(projects: Project[]) {
   }
 }
 
+export function isProjectPublic(project: { published?: boolean; is_public?: boolean }): boolean {
+  if (typeof project.published === "boolean") {
+    return project.published;
+  }
+  if (typeof project.is_public === "boolean") {
+    return project.is_public;
+  }
+  return true;
+}
+
 export async function getAllProjects(includeUnpublished = false): Promise<Project[]> {
   // 1. 서버 사이드 환경 (SSR / Server Component)
   if (typeof window === "undefined") {
@@ -37,7 +47,7 @@ export async function getAllProjects(includeUnpublished = false): Promise<Projec
       return await getServerProjects(includeUnpublished);
     } catch (e) {
       console.warn("Failed to load server projects, falling back:", e);
-      return includeUnpublished ? SAMPLE_PROJECTS : SAMPLE_PROJECTS.filter((p) => p.published);
+      return includeUnpublished ? SAMPLE_PROJECTS : SAMPLE_PROJECTS.filter(isProjectPublic);
     }
   }
 
@@ -63,7 +73,7 @@ export async function getAllProjects(includeUnpublished = false): Promise<Projec
   // 3. 네트워크 오프라인 시 로컬스토리지 fallback
   const projects = getLocalProjects();
   if (includeUnpublished) return projects;
-  return projects.filter((p) => p.published !== false && (p as any).is_public !== false);
+  return projects.filter(isProjectPublic);
 }
 
 export async function getProjectBySlug(slug: string, includeUnpublished = false): Promise<Project | null> {
@@ -76,7 +86,7 @@ export async function getProjectBySlug(slug: string, includeUnpublished = false)
       console.warn("Failed to load server project by slug, falling back:", e);
       const found = SAMPLE_PROJECTS.find((p) => p.slug === slug || p.id === slug);
       if (!found) return null;
-      if (!includeUnpublished && (found.published === false || (found as any).is_public === false)) return null;
+      if (!includeUnpublished && !isProjectPublic(found)) return null;
       return found;
     }
   }
@@ -104,7 +114,7 @@ export async function getProjectBySlug(slug: string, includeUnpublished = false)
   const projects = getLocalProjects();
   const found = projects.find((p) => p.slug === slug || p.id === slug);
   if (!found) return null;
-  if (!includeUnpublished && (found.published === false || (found as any).is_public === false)) return null;
+  if (!includeUnpublished && !isProjectPublic(found)) return null;
   return found;
 }
 
@@ -309,9 +319,10 @@ export async function toggleProjectPublished(id: string): Promise<boolean> {
   const item = projects.find((p) => p.id === id);
   let newStatus = false;
   if (item) {
-    item.published = !item.published;
+    newStatus = !isProjectPublic(item);
+    item.published = newStatus;
+    (item as any).is_public = newStatus;
     item.updated_at = new Date().toISOString();
-    newStatus = item.published;
     saveLocalProjects(projects);
   }
 
@@ -329,6 +340,7 @@ export async function toggleProjectPublished(id: string): Promise<boolean> {
           newStatus = json.published;
           if (item) {
             item.published = newStatus;
+            (item as any).is_public = newStatus;
             saveLocalProjects(projects);
           }
         }

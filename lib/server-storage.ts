@@ -1,17 +1,40 @@
 import fs from "fs";
 import path from "path";
+import os from "os";
 import { Project } from "@/types/project";
 import { SAMPLE_PROJECTS } from "@/data/sample-projects";
 
 const STORE_PATH = path.join(process.cwd(), "data", "projects-store.json");
+const TMP_STORE_PATH = path.join(os.tmpdir(), "gifted_projects_store.json");
 
 let memoryProjects: Project[] | null = null;
 
+export function isProjectPublic(project: { published?: boolean; is_public?: boolean }): boolean {
+  if (typeof project.published === "boolean") {
+    return project.published;
+  }
+  if (typeof project.is_public === "boolean") {
+    return project.is_public;
+  }
+  return true;
+}
+
 async function loadProjectsFromDisk(): Promise<Project[]> {
-  if (memoryProjects) {
-    return memoryProjects;
+  // 1. Check /tmp store first (for serverless environments like Vercel where process.cwd is read-only)
+  try {
+    if (fs.existsSync(TMP_STORE_PATH)) {
+      const raw = await fs.promises.readFile(TMP_STORE_PATH, "utf-8");
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        memoryProjects = parsed;
+        return memoryProjects!;
+      }
+    }
+  } catch (err) {
+    // ignore
   }
 
+  // 2. Check local data/projects-store.json
   try {
     if (fs.existsSync(STORE_PATH)) {
       const raw = await fs.promises.readFile(STORE_PATH, "utf-8");
@@ -25,7 +48,7 @@ async function loadProjectsFromDisk(): Promise<Project[]> {
     console.warn("Failed to read projects-store.json, using fallback:", err);
   }
 
-  // 초기화: sample-projects.ts 데이터 사용 및 디스크 저장
+  // 3. Fallback to sample-projects.ts data
   memoryProjects = JSON.parse(JSON.stringify(SAMPLE_PROJECTS));
   try {
     const dir = path.dirname(STORE_PATH);
@@ -34,7 +57,7 @@ async function loadProjectsFromDisk(): Promise<Project[]> {
     }
     await fs.promises.writeFile(STORE_PATH, JSON.stringify(memoryProjects, null, 2), "utf-8");
   } catch (err) {
-    console.warn("Failed to write initial projects-store.json:", err);
+    // harmless on read-only environments
   }
 
   return memoryProjects!;
@@ -42,6 +65,15 @@ async function loadProjectsFromDisk(): Promise<Project[]> {
 
 async function persistProjects(projects: Project[]): Promise<void> {
   memoryProjects = projects;
+
+  // 1. Always write to /tmp store (writable in Vercel serverless functions)
+  try {
+    await fs.promises.writeFile(TMP_STORE_PATH, JSON.stringify(projects, null, 2), "utf-8");
+  } catch (err) {
+    console.warn("Failed to write to /tmp store:", err);
+  }
+
+  // 2. Write to STORE_PATH (for local development)
   try {
     const dir = path.dirname(STORE_PATH);
     if (!fs.existsSync(dir)) {
@@ -49,7 +81,7 @@ async function persistProjects(projects: Project[]): Promise<void> {
     }
     await fs.promises.writeFile(STORE_PATH, JSON.stringify(projects, null, 2), "utf-8");
   } catch (err) {
-    console.error("Failed to persist projects-store.json:", err);
+    // Harmless EROFS in serverless environments
   }
 }
 
@@ -58,14 +90,14 @@ export async function getServerProjects(includeUnpublished = false): Promise<Pro
   if (includeUnpublished) {
     return projects;
   }
-  return projects.filter((p) => p.published !== false && (p as any).is_public !== false);
+  return projects.filter(isProjectPublic);
 }
 
 export async function getServerProjectBySlug(slug: string, includeUnpublished = false): Promise<Project | null> {
   const projects = await loadProjectsFromDisk();
   const found = projects.find((p) => p.slug === slug || p.id === slug);
   if (!found) return null;
-  if (!includeUnpublished && (found.published === false || (found as any).is_public === false)) {
+  if (!includeUnpublished && !isProjectPublic(found)) {
     return null;
   }
   return found;
@@ -75,12 +107,16 @@ export async function saveServerProject(project: Partial<Project> & { id?: strin
   const projects = await loadProjectsFromDisk();
   let updatedProject: Project;
 
+  const targetPublished = project.published ?? true;
+
   if (project.id) {
     const index = projects.findIndex((p) => p.id === project.id || p.slug === project.slug);
     if (index >= 0) {
       updatedProject = {
         ...projects[index],
         ...project,
+        published: targetPublished,
+        is_public: targetPublished,
         updated_at: new Date().toISOString(),
       } as Project;
       projects[index] = updatedProject;
@@ -89,6 +125,8 @@ export async function saveServerProject(project: Partial<Project> & { id?: strin
         ...SAMPLE_PROJECTS[0],
         ...project,
         id: project.id,
+        published: targetPublished,
+        is_public: targetPublished,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       } as Project;
@@ -119,7 +157,8 @@ export async function saveServerProject(project: Partial<Project> & { id?: strin
         project.thumbnail_url ||
         "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80",
       featured: project.featured ?? false,
-      published: project.published ?? true,
+      published: targetPublished,
+      is_public: targetPublished,
       display_order: project.display_order ?? projects.length + 1,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
@@ -144,10 +183,13 @@ export async function toggleServerProjectPublished(id: string): Promise<boolean>
   const item = projects.find((p) => p.id === id);
   if (!item) return false;
 
-  item.published = !item.published;
+  const currentStatus = isProjectPublic(item);
+  const newStatus = !currentStatus;
+  item.published = newStatus;
+  (item as any).is_public = newStatus;
   item.updated_at = new Date().toISOString();
   await persistProjects(projects);
-  return item.published;
+  return newStatus;
 }
 
 export async function toggleServerProjectFeatured(id: string): Promise<boolean> {

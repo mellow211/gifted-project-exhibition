@@ -79,7 +79,7 @@ export async function POST(request: Request) {
           try {
             await supabase
               .from("projects")
-              .update({ published: newStatus, updated_at: new Date().toISOString() })
+              .update({ published: newStatus, is_public: newStatus, updated_at: new Date().toISOString() })
               .eq("id", payload.id);
           } catch (e) {
             console.warn("Supabase background toggle published failed:", e);
@@ -110,7 +110,7 @@ export async function POST(request: Request) {
           try {
             await supabase
               .from("projects")
-              .update({ published: targetPublished, updated_at: new Date().toISOString() })
+              .update({ published: targetPublished, is_public: targetPublished, updated_at: new Date().toISOString() })
               .neq("id", "placeholder");
           } catch (e) {
             console.warn("Supabase background setAllPublished failed:", e);
