@@ -38,10 +38,10 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
                   <GraduationCap className="w-4 h-4" />
                   <span>WHAT WE LEARNED</span>
                 </div>
-                <h3 className="text-lg font-bold text-navy">
+                <h3 className="text-lg font-bold text-navy break-keep [text-wrap:balance]">
                   프로젝트를 통해 무엇을 배웠나요?
                 </h3>
-                <p className="text-sm text-navy-700 leading-relaxed">
+                <p className="text-sm text-navy-700 leading-relaxed break-keep text-left [text-wrap:pretty]">
                   {reflection}
                 </p>
               </div>
@@ -62,11 +62,11 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
                   <Sparkles className="w-4 h-4 text-secondary" />
                   <span>NEXT QUESTION</span>
                 </div>
-                <h3 className="text-lg font-bold text-white">
+                <h3 className="text-lg font-bold text-white break-keep [text-wrap:balance]">
                   다시 탐구한다면 어떤 질문을 던질까요?
                 </h3>
-                <p className="text-sm text-navy-200 leading-relaxed font-serif">
-                  &ldquo;{nextQuestion}&rdquo;
+                <p className="text-sm text-navy-200 leading-relaxed font-serif break-keep text-left [text-wrap:pretty]">
+                  &ldquo;{nextQuestion.replace(/^[“"']+|[”"']+$/g, "").trim()}&rdquo;
                 </p>
               </div>
 

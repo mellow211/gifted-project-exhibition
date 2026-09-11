@@ -66,32 +66,32 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </span>
           </div>
 
-          <h3 className="font-bold text-base text-navy group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+          <h3 className="font-bold text-base text-navy group-hover:text-primary transition-colors line-clamp-2 leading-snug break-keep [text-wrap:balance]">
             {project.title}
           </h3>
 
-          <p className="text-xs text-navy-500 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-navy-500 line-clamp-2 leading-relaxed break-keep">
             {project.summary}
           </p>
         </div>
       </div>
 
       {/* Footer Area with Tags and CTA */}
-      <div className="px-5 pb-4 pt-2 border-t border-surface-border/60 flex items-center justify-between">
-        <div className="flex flex-wrap gap-1">
+      <div className="px-5 pb-4 pt-2 border-t border-surface-border/60 flex items-center justify-between gap-2">
+        <div className="flex flex-wrap gap-1 min-w-0 flex-1">
           {project.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-[10px] text-navy-400 bg-surface-muted px-1.5 py-0.5 rounded"
+              className="text-[10px] text-navy-400 bg-surface-muted px-1.5 py-0.5 rounded whitespace-nowrap"
             >
               #{tag}
             </span>
           ))}
         </div>
 
-        <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-1 transition-transform">
+        <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-1 transition-transform shrink-0 whitespace-nowrap">
           <span>프로젝트 관람하기</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5 shrink-0" />
         </div>
       </div>
     </Link>

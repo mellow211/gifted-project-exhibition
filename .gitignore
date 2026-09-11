@@ -38,5 +38,7 @@ supabase/.temp/
 
 # scratch and python
 scratch/
+scratch*
 __pycache__/
 *.pyc
+

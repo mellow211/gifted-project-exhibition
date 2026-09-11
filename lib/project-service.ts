@@ -43,11 +43,14 @@ export async function getAllProjects(includeUnpublished = false): Promise<Projec
 
   // 2. 클라이언트 사이드 환경: /api/projects 호출
   try {
-    const res = await fetch(`/api/projects?includeUnpublished=${includeUnpublished}`);
+    const res = await fetch(`/api/projects?includeUnpublished=${includeUnpublished}&_t=${Date.now()}`, {
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache" },
+    });
     if (res.ok) {
       const data = await res.json();
       if (Array.isArray(data)) {
-        if (includeUnpublished) {
+        if (includeUnpublished || data.length > 0) {
           saveLocalProjects(data);
         }
         return data as Project[];
@@ -80,7 +83,13 @@ export async function getProjectBySlug(slug: string, includeUnpublished = false)
 
   // 2. 클라이언트 사이드 환경
   try {
-    const res = await fetch(`/api/projects?slug=${encodeURIComponent(slug)}&includeUnpublished=${includeUnpublished}`);
+    const res = await fetch(
+      `/api/projects?slug=${encodeURIComponent(slug)}&includeUnpublished=${includeUnpublished}&_t=${Date.now()}`,
+      {
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache" },
+      }
+    );
     if (res.ok) {
       const data = await res.json();
       if (data && data.id) {
@@ -120,13 +129,6 @@ export async function getRelatedProjects(currentSlug: string, category: string, 
 
   scored.sort((a, b) => b.score - a.score);
   return scored.slice(0, 3).map((item) => item.project);
-}
-
-export async function getRandomProjectSlug(): Promise<string | null> {
-  const projects = await getAllProjects();
-  if (projects.length === 0) return null;
-  const randomIndex = Math.floor(Math.random() * projects.length);
-  return projects[randomIndex].slug;
 }
 
 export async function getExhibitionStats(): Promise<ExhibitionStats> {
@@ -169,35 +171,10 @@ export function filterProjects(projects: Project[], filters: ProjectFilterState)
       if (p.category !== filters.category) return false;
     }
 
-    // Grade
-    if (filters.grade && filters.grade !== "ALL") {
-      if (!p.grade.includes(filters.grade)) return false;
-    }
-
-    // Program
-    if (filters.program && filters.program !== "ALL") {
-      if (!p.program.toLowerCase().includes(filters.program.toLowerCase())) return false;
-    }
-
-    // Year
-    if (filters.year && filters.year !== "ALL") {
-      if (p.year.toString() !== filters.year) return false;
-    }
-
     return true;
   }).sort((a, b) => {
-    if (filters.sortBy === "featured") {
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      return a.display_order - b.display_order;
-    }
-    if (filters.sortBy === "latest") {
-      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-    }
-    if (filters.sortBy === "title") {
-      return a.title.localeCompare(b.title, "ko");
-    }
-    return 0;
+    // 기본 정렬: 제목 가나다순
+    return a.title.localeCompare(b.title, "ko", { numeric: true });
   });
 }
 

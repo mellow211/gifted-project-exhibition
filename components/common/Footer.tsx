@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
                 <Sparkles className="w-4 h-4" />
               </div>
               <span className="font-bold text-sm tracking-tight text-white">
-                대전교육정보원 정보영재교육원
+                대전교육정보원정보영재교육원
               </span>
             </div>
             <p className="text-navy-300 text-sm max-w-md leading-relaxed">
@@ -78,11 +78,6 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  전시회 소개 (About)
-                </Link>
-              </li>
-              <li>
                 <Link
                   href="/admin"
                   className="inline-flex items-center gap-1 text-navy-400 hover:text-secondary transition-colors"
@@ -97,7 +92,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-navy-400 gap-4">
-          <p>© 2026 대전교육정보원 정보영재교육원. All rights reserved.</p>
+          <p>© 2026 대전교육정보원정보영재교육원. All rights reserved.</p>
           <div className="flex items-center gap-1 text-navy-400">
             <span>2026 정보영재 개인주제탐구발표대회</span>
             <Heart className="w-3.5 h-3.5 text-rose-400 inline ml-1" />

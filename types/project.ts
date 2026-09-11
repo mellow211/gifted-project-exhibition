@@ -39,6 +39,7 @@ export interface Project {
   motivation: string;
   description: string;
   reflection: string;
+  growth?: string;
   next_question: string;
   thumbnail_url: string;
   poster_url?: string;
@@ -72,10 +73,10 @@ export interface ReactionCounts {
 export interface ProjectFilterState {
   searchQuery: string;
   category: string;
-  grade: string;
-  program: string;
-  year: string;
-  sortBy: "featured" | "latest" | "title";
+  grade?: string;
+  program?: string;
+  year?: string;
+  sortBy?: "featured" | "latest" | "title";
 }
 
 export interface ExhibitionStats {

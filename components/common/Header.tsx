@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Compass, Sparkles, Shield } from "lucide-react";
+import { Menu, X, Sparkles, Shield } from "lucide-react";
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,7 +25,6 @@ export const Header: React.FC = () => {
   const navLinks = [
     { href: "/", label: "HOME" },
     { href: "/projects", label: "PROJECTS" },
-    { href: "/about", label: "ABOUT" },
   ];
 
   const isActive = (href: string) => {
@@ -54,7 +53,7 @@ export const Header: React.FC = () => {
           </div>
           <div className="flex flex-col">
             <span className="font-bold text-sm tracking-tight text-navy group-hover:text-primary transition-colors">
-              대전교육정보원 정보영재교육원
+              대전교육정보원정보영재교육원
             </span>
             <span className="text-[11px] text-navy-500 font-medium tracking-tight -mt-0.5">
               2026 개인주제탐구발표대회 온라인 전시장
@@ -83,19 +82,10 @@ export const Header: React.FC = () => {
 
           <div className="h-4 w-px bg-surface-border mx-2" />
 
-          {/* Random discovery direct button */}
-          <Link
-            href="/projects?discover=random"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium text-navy-700 hover:text-navy bg-white border border-surface-border rounded-md shadow-subtle hover:border-primary/40 transition-all"
-          >
-            <Compass className="w-3.5 h-3.5 text-primary" />
-            <span>랜덤 탐색</span>
-          </Link>
-
           {/* Admin link */}
           <Link
             href="/admin"
-            className="ml-1 p-1.5 text-navy-400 hover:text-navy-700 hover:bg-surface-muted rounded-md transition-colors"
+            className="p-1.5 text-navy-400 hover:text-navy-700 hover:bg-surface-muted rounded-md transition-colors"
             title="관리자 시스템"
             aria-label="관리자 시스템 바로가기"
           >
@@ -132,15 +122,7 @@ export const Header: React.FC = () => {
               {link.label}
             </Link>
           ))}
-          <div className="pt-2 border-t border-surface-border flex items-center justify-between">
-            <Link
-              href="/projects?discover=random"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-primary"
-            >
-              <Compass className="w-4 h-4" />
-              <span>🎲 우연히 만나는 프로젝트</span>
-            </Link>
+          <div className="pt-2 border-t border-surface-border flex items-center justify-end">
             <Link
               href="/admin"
               onClick={() => setMobileMenuOpen(false)}

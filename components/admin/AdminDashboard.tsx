@@ -64,22 +64,29 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
   };
 
   const handleTogglePublish = async (id: string) => {
+    setProjects((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, published: !p.published } : p))
+    );
     const isPub = await toggleProjectPublished(id);
     showToast(isPub ? "전시관에 공개되었습니다." : "비공개로 전환되었습니다.");
-    fetchAll();
+    await fetchAll();
   };
 
   const handleToggleFeatured = async (id: string) => {
+    setProjects((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, featured: !p.featured } : p))
+    );
     const isFeat = await toggleProjectFeatured(id);
     showToast(isFeat ? "주목할 프로젝트(Featured)로 등록되었습니다." : "Featured 설정이 해제되었습니다.");
-    fetchAll();
+    await fetchAll();
   };
 
   const handleResetSample = async () => {
     if (confirm("영재 프로젝트 데이터베이스를 기본 데이터로 복원하시겠습니까?")) {
+      setLoading(true);
       await resetToSampleData();
       showToast("데이터가 복원되었습니다.");
-      fetchAll();
+      await fetchAll();
     }
   };
 
@@ -89,6 +96,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
       ? "모든 프로젝트가 온라인 전시관에 즉시 노출됩니다."
       : "모든 프로젝트가 비공개 처리되어 일반 방문자에게 노출되지 않습니다.";
     if (confirm(`${actionText}하시겠습니까?\n(${descText})`)) {
+      // 즉각적인 UI 반영 (낙관적 업데이트)
+      setProjects((prev) =>
+        prev.map((p) => ({ ...p, published, is_public: published }))
+      );
       setLoading(true);
       await setAllProjectsPublished(published);
       showToast(published ? "모든 프로젝트가 공개되었습니다." : "모든 프로젝트가 비공개 처리되었습니다.");
@@ -133,7 +144,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-primary tracking-wider mb-1">
             <Layers className="w-3.5 h-3.5" />
-            <span>대전교육정보원 정보영재교육원</span>
+            <span>대전교육정보원정보영재교육원</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-navy">
             2026 개인주제탐구발표대회 관리 대시보드

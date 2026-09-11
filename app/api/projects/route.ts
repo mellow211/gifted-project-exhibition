@@ -12,6 +12,13 @@ import {
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+const NO_CACHE_HEADERS = {
+  "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+  Pragma: "no-cache",
+  Expires: "0",
+};
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -22,16 +29,16 @@ export async function GET(request: Request) {
     if (slug) {
       const project = await getServerProjectBySlug(slug, includeUnpublished);
       if (!project) {
-        return NextResponse.json({ error: "Project not found" }, { status: 404 });
+        return NextResponse.json({ error: "Project not found" }, { status: 404, headers: NO_CACHE_HEADERS });
       }
-      return NextResponse.json(project);
+      return NextResponse.json(project, { headers: NO_CACHE_HEADERS });
     }
 
     const projects = await getServerProjects(includeUnpublished);
-    return NextResponse.json(projects);
+    return NextResponse.json(projects, { headers: NO_CACHE_HEADERS });
   } catch (error: any) {
     console.error("GET /api/projects error:", error);
-    return NextResponse.json({ error: error?.message || "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ error: error?.message || "Internal Server Error" }, { status: 500, headers: NO_CACHE_HEADERS });
   }
 }
 

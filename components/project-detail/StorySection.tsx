@@ -24,7 +24,7 @@ export const StorySection: React.FC<StorySectionProps> = ({
         </h2>
 
         {/* Highlight Summary callout */}
-        <div className="p-5 rounded-xl bg-navy-50 border-l-4 border-primary text-navy-800 text-sm sm:text-base font-medium leading-relaxed">
+        <div className="p-5 rounded-xl bg-navy-50 border-l-4 border-primary text-navy-800 text-sm sm:text-base font-medium leading-relaxed break-keep text-left [text-wrap:pretty]">
           {summary}
         </div>
 
@@ -34,7 +34,7 @@ export const StorySection: React.FC<StorySectionProps> = ({
             <BookOpen className="w-4 h-4 text-primary" />
             <span>연구 및 개발 스토리</span>
           </div>
-          <div className="text-sm sm:text-base text-navy-700 leading-loose whitespace-pre-line">
+          <div className="text-sm sm:text-base text-navy-700 leading-loose whitespace-pre-line break-keep text-left [text-wrap:pretty]">
             {description}
           </div>
         </div>

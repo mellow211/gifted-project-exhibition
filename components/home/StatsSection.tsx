@@ -7,8 +7,8 @@ import { FolderGit2, Users, Lightbulb } from "lucide-react";
 
 export const StatsSection: React.FC = () => {
   const [stats, setStats] = useState<ExhibitionStats>({
-    totalProjects: 83,
-    totalStudents: 83,
+    totalProjects: 85,
+    totalStudents: 85,
     totalFields: 5,
   });
 

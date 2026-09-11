@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-대전교육정보원 정보영재교육원 개인주제탐구발표대회
+대전교육정보원정보영재교육원 개인주제탐구발표대회
 보고서 및 작품설명서 PDF 자동 분석 & 프로젝트 생성 엔진 (고도화 버전)
 """
 
@@ -859,7 +859,7 @@ def process_pdf_project(report_pdf=None, manual_pdf=None, category_override=None
         "team_name": team_name,
         "student_display_names": [masked_name],
         "grade": meta["grade"],
-        "program": f"대전교육정보원 정보영재교육원 {meta['category']} 과정",
+        "program": f"대전교육정보원정보영재교육원 {meta['category']} 과정",
         "year": 2026,
         "category": meta["category"],
         "tags": sections["tags"],

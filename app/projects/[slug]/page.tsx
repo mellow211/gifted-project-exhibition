@@ -25,12 +25,12 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const project = await getProjectBySlug(params.slug, isPreview);
   if (!project || (!project.published && !isPreview)) {
     return {
-      title: "프로젝트를 찾을 수 없습니다 | 대전교육정보원 정보영재교육원",
+      title: "프로젝트를 찾을 수 없습니다 | 대전교육정보원정보영재교육원",
     };
   }
 
   return {
-    title: `${project.title} | 대전교육정보원 정보영재교육원 개인주제탐구발표대회`,
+    title: `${project.title} | 대전교육정보원정보영재교육원 개인주제탐구발표대회`,
     description: project.summary,
     openGraph: {
       title: `${project.title} | 2026 영재 연구 전시관`,

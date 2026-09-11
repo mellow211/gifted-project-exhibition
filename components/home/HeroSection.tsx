@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles, BookOpen } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export const HeroSection: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ export const HeroSection: React.FC = () => {
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-light border border-primary/20 text-primary text-xs font-semibold tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>대전교육정보원 정보영재교육원</span>
+            <span>대전교육정보원정보영재교육원</span>
           </div>
 
           {/* Headline */}
@@ -37,7 +37,7 @@ export const HeroSection: React.FC = () => {
 
           {/* Description */}
           <p className="text-base sm:text-lg text-navy-600 font-normal leading-relaxed max-w-2xl">
-            대전교육정보원 정보영재교육원 학생들이 스스로 질문을 던지고, 탐구하고, 실험하며 완성한 창의적 연구 산출물을 만나보세요. 
+            대전교육정보원정보영재교육원 학생들이 스스로 질문을 던지고, 탐구하고, 실험하며 완성한 창의적 연구 산출물을 만나보세요. 
             단순한 결과물이 아닌 질문에서 성찰까지 이어지는 지적 탐구의 여정입니다.
           </p>
 
@@ -49,14 +49,6 @@ export const HeroSection: React.FC = () => {
             >
               <span>전시 관람하기</span>
               <ArrowRight className="w-4 h-4 text-secondary" />
-            </Link>
-
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 px-5 py-3.5 text-xs font-semibold text-navy-600 hover:text-primary transition-colors border border-surface-border rounded-lg hover:border-navy-300 bg-white"
-            >
-              <BookOpen className="w-4 h-4 text-primary" />
-              <span>전시 철학 읽기</span>
             </Link>
           </div>
         </div>

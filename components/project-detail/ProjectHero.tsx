@@ -91,22 +91,22 @@ export const ProjectHero: React.FC<ProjectHeroProps> = ({ project }) => {
         </div>
 
         {/* Badges & Meta */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
-          <CategoryTag category={project.category} className="bg-navy-800 text-white border-navy-700" />
-          {project.badge && <Badge type={project.badge} className="bg-navy-800 text-white border-navy-700" />}
+        <div className="flex flex-wrap items-center gap-2.5 mb-4">
+          <CategoryTag category={project.category} dark className="px-3 py-1 text-xs font-bold rounded-md" />
+          {project.badge && <Badge type={project.badge} dark className="px-3 py-1 text-xs font-bold" />}
           <span className="text-xs text-navy-300 ml-1 font-mono">
             {project.year} · {project.program}
           </span>
         </div>
 
         {/* Project Title */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4 break-keep [text-wrap:balance]">
           {project.title}
         </h1>
 
         {/* Subtitle / Question highlight */}
         {project.subtitle && (
-          <p className="text-lg sm:text-xl text-navy-200 font-medium leading-relaxed mb-6">
+          <p className="text-lg sm:text-xl text-navy-200 font-medium leading-relaxed mb-6 break-keep [text-wrap:pretty]">
             {project.subtitle}
           </p>
         )}

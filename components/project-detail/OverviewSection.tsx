@@ -35,7 +35,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                 </div>
                 <span>왜 이 탐구를 시작했나요?</span>
               </div>
-              <p className="text-sm sm:text-base text-navy-700 leading-relaxed">
+              <p className="text-sm sm:text-base text-navy-700 leading-relaxed break-keep text-left [text-wrap:pretty]">
                 {motivation}
               </p>
             </div>
@@ -54,7 +54,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                 </div>
                 <span>무엇을 탐구하고 개발했나요?</span>
               </div>
-              <p className="text-sm sm:text-base text-navy-700 leading-relaxed">
+              <p className="text-sm sm:text-base text-navy-700 leading-relaxed break-keep text-left [text-wrap:pretty]">
                 {summary || description}
               </p>
             </div>

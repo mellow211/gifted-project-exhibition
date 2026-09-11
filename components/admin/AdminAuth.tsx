@@ -76,7 +76,7 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onAuthenticated }) => {
           <Shield className="w-6 h-6" />
         </div>
         <span className="text-[11px] font-bold text-primary tracking-wide">
-          대전교육정보원 정보영재교육원
+          대전교육정보원정보영재교육원
         </span>
         <h2 className="text-xl font-bold text-navy">2026 개인주제탐구발표대회 관리자 인증</h2>
         <p className="text-xs text-navy-500">

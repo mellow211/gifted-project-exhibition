@@ -102,21 +102,21 @@ export const FeaturedProjects: React.FC = () => {
                 {heroProject.summary}
               </p>
 
-              <div className="flex items-center justify-between pt-2 border-t border-surface-border">
-                <div className="flex flex-wrap gap-1.5">
+              <div className="flex items-center justify-between pt-2 border-t border-surface-border gap-2">
+                <div className="flex flex-wrap gap-1.5 min-w-0 flex-1">
                   {heroProject.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="text-[11px] font-medium text-navy-500 bg-surface-muted px-2 py-0.5 rounded"
+                      className="text-[11px] font-medium text-navy-500 bg-surface-muted px-2 py-0.5 rounded whitespace-nowrap"
                     >
                       #{tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-1 transition-transform">
+                <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-1 transition-transform shrink-0 whitespace-nowrap">
                   <span>프로젝트 관람하기</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                 </div>
               </div>
             </div>
@@ -154,9 +154,9 @@ export const FeaturedProjects: React.FC = () => {
                   {project.student_display_names.join(", ")}
                 </p>
 
-                <div className="flex items-center gap-1 text-[11px] font-medium text-primary">
+                <div className="flex items-center gap-1 text-[11px] font-medium text-primary shrink-0 whitespace-nowrap">
                   <span>관람하기</span>
-                  <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform shrink-0" />
                 </div>
               </div>
             </Link>

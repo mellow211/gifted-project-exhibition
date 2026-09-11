@@ -7,7 +7,6 @@ import { getAllProjects, filterProjects } from "@/lib/project-service";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { SearchBar } from "@/components/projects/SearchBar";
 import { ProjectFilter } from "@/components/projects/ProjectFilter";
-import { RandomDiscoveryButton } from "@/components/projects/RandomDiscoveryModal";
 import { LayoutGrid, Sparkles, FolderSearch, RotateCcw } from "lucide-react";
 
 function ProjectsContent() {
@@ -23,7 +22,7 @@ function ProjectsContent() {
     grade: "ALL",
     program: "ALL",
     year: "ALL",
-    sortBy: "featured",
+    sortBy: "title",
   });
 
   useEffect(() => {
@@ -52,7 +51,7 @@ function ProjectsContent() {
       grade: "ALL",
       program: "ALL",
       year: "ALL",
-      sortBy: "featured",
+      sortBy: "title",
     });
   };
 
@@ -69,18 +68,14 @@ function ProjectsContent() {
             학생들의 질문과 탐구를 만나보세요
           </h1>
           <p className="text-sm text-navy-500">
-            주제별, 학년별 학생 연구 결과물과 단계별 탐구 과정을 열람할 수 있습니다.
+            과정별 학생 연구 결과물과 단계별 탐구 과정을 가나다순으로 열람할 수 있습니다.
           </p>
         </div>
 
-        {/* Random Discovery CTA */}
-        <div className="flex-shrink-0">
-          <RandomDiscoveryButton />
-        </div>
       </div>
 
       {/* Search & Filter Toolbar */}
-      <div className="bg-white rounded-2xl border border-surface-border p-5 sm:p-6 shadow-subtle space-y-5">
+      <div className="bg-white rounded-2xl border border-surface-border p-5 sm:p-6 shadow-subtle space-y-4">
         <SearchBar
           value={filters.searchQuery}
           onChange={(q) => setFilters({ ...filters, searchQuery: q })}
@@ -95,12 +90,17 @@ function ProjectsContent() {
 
       {/* Project Count Bar */}
       <div className="flex items-center justify-between text-xs text-navy-500 font-medium px-1">
-        <span className="font-mono font-bold text-navy text-sm">
-          {filteredProjects.length} {filteredProjects.length === 1 ? "Project" : "Projects"}
-        </span>
+        <div className="flex items-center gap-2.5">
+          <span className="font-mono font-bold text-navy text-sm">
+            {filteredProjects.length} {filteredProjects.length === 1 ? "Project" : "Projects"}
+          </span>
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface text-navy-600 border border-surface-border">
+            가나다순 정렬
+          </span>
+        </div>
         {filters.category !== "ALL" && (
           <span className="text-primary font-semibold">
-            &apos;{filters.category}&apos; 전시관 필터링 적용 중
+            &apos;{filters.category}&apos; 전시관
           </span>
         )}
       </div>

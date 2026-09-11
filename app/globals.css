@@ -20,6 +20,18 @@
     overflow-x: hidden;
   }
 
+  /* Korean typography: prevent ragged edges and isolated syllable line wrapping */
+  p, li, dd {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    word-break: keep-all;
+    text-wrap: balance;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
@@ -35,6 +47,15 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #8B9CD2;
   }
+}
+
+/* Korean Typography Utility */
+.korean-justify,
+.korean-text {
+  text-align: left;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
 }
 
 /* Glassmorphism utility */

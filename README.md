@@ -22,8 +22,7 @@
   - `ROBOT & IoT`: 로봇과 피지컬 컴퓨팅
   - `SCIENCE`: 과학 탐구
   - `CREATIVE`: 창의융합
-- **스마트 검색 & 다중 필터**: 제목, 학생 표시명, 태그, 요약 실시간 검색 + 학년/과정/연도/정렬 필터
-- **🎲 우연히 만나는 프로젝트**: 실제 전시장을 거닐 듯 예상치 못한 작품을 만나는 랜덤 발견 모달
+
 - **관리자 시스템 (/admin)**:
   - 데모 모드 원클릭 로그인 & Supabase Auth 연동 지원
   - 프로젝트 등록 / 수정 / 삭제 / 공개·비공개 토글 / Featured 큐레이션 설정
@@ -87,13 +86,12 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 │   ├── projects/
 │   │   ├── page.tsx              # PROJECTS GALLERY (검색, 필터, 갤러리 그리드)
 │   │   └── [slug]/page.tsx       # PROJECT DETAIL (01~08 전시 스토리텔링)
-│   ├── about/page.tsx            # ABOUT (전시 철학, 탐구 사이클, 매니페스토)
 │   ├── admin/page.tsx            # ADMIN (관리자 대시보드 및 프로젝트 관리)
 │   └── not-found.tsx             # 404 페이지
 ├── components/
 │   ├── common/                   # Header, Footer, Badge 등
 │   ├── home/                     # HeroSection, StatsSection, FeaturedProjects, ExhibitionHall
-│   ├── projects/                 # ProjectCard, ProjectFilter, SearchBar, RandomDiscovery
+│   ├── projects/                 # ProjectCard, ProjectFilter, SearchBar
 │   ├── project-detail/           # ProjectHero, Question, Overview, Timeline, Archive, Reflection, RelatedProjects
 │   └── admin/                    # AdminAuth, AdminDashboard, ProjectForm
 ├── data/

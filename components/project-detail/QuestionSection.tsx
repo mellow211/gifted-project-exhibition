@@ -6,6 +6,8 @@ interface QuestionSectionProps {
 }
 
 export const QuestionSection: React.FC<QuestionSectionProps> = ({ question }) => {
+  const cleanQuestion = question.replace(/^[“"']+|[”"']+$/g, "").trim();
+
   return (
     <section className="py-12 border-b border-surface-border">
       <div className="space-y-6 text-center">
@@ -26,8 +28,8 @@ export const QuestionSection: React.FC<QuestionSectionProps> = ({ question }) =>
           </div>
 
           <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-serif text-navy font-bold leading-relaxed tracking-tight">
-              &ldquo;{question}&rdquo;
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-serif text-navy font-bold leading-relaxed tracking-tight break-keep [text-wrap:balance]">
+              &ldquo;{cleanQuestion}&rdquo;
             </p>
           </div>
 

@@ -26,7 +26,7 @@ export const WhySection: React.FC<WhySectionProps> = ({ motivation }) => {
             </div>
             <div className="space-y-2">
               <h3 className="text-sm font-bold text-navy">탐구 동기 및 문제의식</h3>
-              <p className="text-sm sm:text-base text-navy-700 leading-relaxed">
+              <p className="text-sm sm:text-base text-navy-700 leading-relaxed break-keep text-left [text-wrap:pretty]">
                 {motivation}
               </p>
             </div>

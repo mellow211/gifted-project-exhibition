@@ -72,7 +72,7 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
     team_name: initialData?.team_name || "",
     student_display_names: initialData?.student_display_names || [""],
     grade: initialData?.grade || "초등학교 6학년",
-    program: initialData?.program || "대전교육정보원 정보영재교육원 SW초급 과정",
+    program: initialData?.program || "대전교육정보원정보영재교육원 SW초급 과정",
     year: initialData?.year || 2026,
     category: (initialData?.category as ProjectCategory) || "SW초급",
     tags: initialData?.tags || ["SW초급"],
