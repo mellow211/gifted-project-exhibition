@@ -69,7 +69,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 1,
     "report_pdf_url": "/uploads/reports/game-development-886-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/game-development-886-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z",
+    "updated_at": "2026-09-11T07:26:50.661Z",
     "growth": "AI 도구의 장점과 한계를 비판적으로 검증하고 사용자의 피드백을 반영하여 게임성을 개선하는 사용자 중심 개발 태도를 길렀습니다. 사람이 기획하는 창의적 요소와 AI의 신속한 코드 생성 능력을 결합했을 때 최상의 시너지를 낼 수 있음을 깨달았습니다."
   },
   {
@@ -148,7 +148,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 2,
     "report_pdf_url": "/uploads/reports/smart-planner-676-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-planner-676-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-vocab-learner-163",
@@ -216,7 +216,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 3,
     "report_pdf_url": "/uploads/reports/vocab-learner-163-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/vocab-learner-163-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-game-development-665",
@@ -287,7 +287,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 4,
     "report_pdf_url": "/uploads/reports/game-development-665-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/game-development-665-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-937",
@@ -357,7 +357,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 5,
     "report_pdf_url": "/uploads/reports/project-937-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-937-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-game-development-521",
@@ -433,7 +433,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 6,
     "report_pdf_url": "/uploads/reports/game-development-521-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/game-development-521-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-gyeongbokgung-workbook-519",
@@ -510,7 +510,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 7,
     "report_pdf_url": "/uploads/reports/gyeongbokgung-workbook-519-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/gyeongbokgung-workbook-519-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-food-recommender-346",
@@ -586,7 +586,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 8,
     "report_pdf_url": "/uploads/reports/food-recommender-346-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/food-recommender-346-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-game-development-659",
@@ -657,7 +657,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 9,
     "report_pdf_url": "/uploads/reports/game-development-659-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/game-development-659-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-235",
@@ -728,7 +728,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 10,
     "report_pdf_url": "/uploads/reports/project-235-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-235-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-planter-114",
@@ -799,7 +799,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 11,
     "report_pdf_url": "/uploads/reports/smart-planter-114-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-planter-114-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-game-development-106",
@@ -868,7 +868,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 12,
     "report_pdf_url": "/uploads/reports/game-development-106-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/game-development-106-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-ai-styling-580",
@@ -939,7 +939,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 13,
     "report_pdf_url": "/uploads/reports/ai-styling-580-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/ai-styling-580-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-kickboard-safety-073",
@@ -1010,7 +1010,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 14,
     "report_pdf_url": "/uploads/reports/kickboard-safety-073-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/kickboard-safety-073-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-pet-care-423",
@@ -1088,7 +1088,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 15,
     "report_pdf_url": "/uploads/reports/pet-care-423-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/pet-care-423-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-051",
@@ -1159,7 +1159,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 16,
     "report_pdf_url": "/uploads/reports/project-051-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-051-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-704",
@@ -1229,7 +1229,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 17,
     "report_pdf_url": "/uploads/reports/project-704-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-704-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-574",
@@ -1304,7 +1304,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 18,
     "report_pdf_url": "/uploads/reports/project-574-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-574-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-eco-quiz-498",
@@ -1382,7 +1382,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 19,
     "report_pdf_url": "/uploads/reports/eco-quiz-498-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/eco-quiz-498-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-315",
@@ -1453,7 +1453,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 20,
     "report_pdf_url": "/uploads/reports/project-315-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-315-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-emotion-diary-340",
@@ -1531,7 +1531,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 21,
     "report_pdf_url": "/uploads/reports/emotion-diary-340-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/emotion-diary-340-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-game-development-553",
@@ -1608,7 +1608,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 22,
     "report_pdf_url": "/uploads/reports/game-development-553-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/game-development-553-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-piano-analysis-630",
@@ -1677,7 +1677,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 23,
     "report_pdf_url": "/uploads/reports/piano-analysis-630-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/piano-analysis-630-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-font-optimizer-523",
@@ -1748,7 +1748,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 24,
     "report_pdf_url": "/uploads/reports/font-optimizer-523-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/font-optimizer-523-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-276",
@@ -1826,7 +1826,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 25,
     "report_pdf_url": "/uploads/reports/project-276-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-276-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-392",
@@ -1897,7 +1897,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 26,
     "report_pdf_url": "/uploads/reports/project-392-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-392-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-257",
@@ -1974,7 +1974,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 27,
     "report_pdf_url": "/uploads/reports/project-257-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-257-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-885",
@@ -2045,7 +2045,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 28,
     "report_pdf_url": "/uploads/reports/project-885-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-885-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-250",
@@ -2116,7 +2116,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 29,
     "report_pdf_url": "/uploads/reports/project-250-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-250-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-077",
@@ -2187,7 +2187,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 30,
     "report_pdf_url": "/uploads/reports/project-077-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-077-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-792",
@@ -2263,7 +2263,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 31,
     "report_pdf_url": "/uploads/reports/project-792-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-792-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-vocab-learner-138",
@@ -2334,7 +2334,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 32,
     "report_pdf_url": "/uploads/reports/vocab-learner-138-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/vocab-learner-138-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-youtube-limiter-347",
@@ -2404,7 +2404,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 33,
     "report_pdf_url": "/uploads/reports/youtube-limiter-347-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/youtube-limiter-347-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-calorie-fitness-549",
@@ -2475,7 +2475,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 34,
     "report_pdf_url": "/uploads/reports/calorie-fitness-549-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/calorie-fitness-549-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-cafeteria-optimizer-399",
@@ -2546,7 +2546,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 35,
     "report_pdf_url": "/uploads/reports/cafeteria-optimizer-399-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/cafeteria-optimizer-399-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-864",
@@ -2617,7 +2617,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 36,
     "report_pdf_url": "/uploads/reports/smart-robot-864-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-864-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-990",
@@ -2687,7 +2687,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 37,
     "report_pdf_url": "/uploads/reports/smart-robot-990-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-990-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-wheelchair-104",
@@ -2758,7 +2758,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 38,
     "report_pdf_url": "/uploads/reports/smart-wheelchair-104-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-wheelchair-104-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-safety-helper-547",
@@ -2829,7 +2829,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 39,
     "report_pdf_url": "/uploads/reports/safety-helper-547-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/safety-helper-547-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-safety-helper-004",
@@ -2893,7 +2893,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 40,
     "report_pdf_url": "/uploads/reports/safety-helper-004-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/safety-helper-004-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-planter-680",
@@ -2957,7 +2957,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 41,
     "report_pdf_url": "/uploads/reports/smart-planter-680-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-planter-680-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-waste-sorting-robot-543",
@@ -3034,7 +3034,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 42,
     "report_pdf_url": "/uploads/reports/waste-sorting-robot-543-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/waste-sorting-robot-543-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-autonomous-car-040",
@@ -3105,7 +3105,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 43,
     "report_pdf_url": "/uploads/reports/autonomous-car-040-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/autonomous-car-040-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-safety-helper-073",
@@ -3169,7 +3169,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 44,
     "report_pdf_url": "/uploads/reports/safety-helper-073-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/safety-helper-073-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-fire-escape-robot-398",
@@ -3247,7 +3247,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 45,
     "report_pdf_url": "/uploads/reports/fire-escape-robot-398-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/fire-escape-robot-398-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-321",
@@ -3318,7 +3318,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 46,
     "report_pdf_url": "/uploads/reports/smart-robot-321-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-321-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-088",
@@ -3388,7 +3388,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 47,
     "report_pdf_url": "/uploads/reports/smart-robot-088-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-088-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-safety-helper-988",
@@ -3458,7 +3458,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 48,
     "report_pdf_url": "/uploads/reports/safety-helper-988-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/safety-helper-988-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z",
+    "updated_at": "2026-09-11T07:26:50.661Z",
     "growth": "반복적인 주행 충돌 실험을 통해 운전자의 시선 이탈 경고음과 감속 로직을 추가하며 다중 안전 시스템의 필요성을 체득했습니다. 제어 알고리즘의 예외 상황을 고려하고 충돌 방지 정확도를 단계별로 끌어올리는 SW·HW 융합 문제 해결 역량을 키웠습니다."
   },
   {
@@ -3530,7 +3530,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 49,
     "report_pdf_url": "/uploads/reports/autonomous-car-689-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/autonomous-car-689-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-389",
@@ -3608,7 +3608,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 50,
     "report_pdf_url": "/uploads/reports/smart-robot-389-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-389-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-790",
@@ -3672,7 +3672,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 51,
     "report_pdf_url": "/uploads/reports/smart-robot-790-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-790-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-298",
@@ -3743,7 +3743,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 52,
     "report_pdf_url": "/uploads/reports/project-298-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-298-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-ai-recycling-017",
@@ -3814,7 +3814,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 53,
     "report_pdf_url": "/uploads/reports/ai-recycling-017-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/ai-recycling-017-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-767",
@@ -3892,7 +3892,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 54,
     "report_pdf_url": "/uploads/reports/smart-robot-767-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-767-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-safety-helper-505",
@@ -3963,7 +3963,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 55,
     "report_pdf_url": "/uploads/reports/safety-helper-505-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/safety-helper-505-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-759",
@@ -4041,7 +4041,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 56,
     "report_pdf_url": "/uploads/reports/project-759-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-759-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-785",
@@ -4112,7 +4112,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 57,
     "report_pdf_url": "/uploads/reports/project-785-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-785-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-398",
@@ -4190,7 +4190,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 58,
     "report_pdf_url": "/uploads/reports/project-398-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-398-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-water-fountain-980",
@@ -4268,7 +4268,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 59,
     "report_pdf_url": "/uploads/reports/water-fountain-980-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/water-fountain-980-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-369",
@@ -4346,7 +4346,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 60,
     "report_pdf_url": "/uploads/reports/project-369-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-369-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-drowsiness-prevention-291",
@@ -4424,7 +4424,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 61,
     "report_pdf_url": "/uploads/reports/drowsiness-prevention-291-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/drowsiness-prevention-291-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-894",
@@ -4502,7 +4502,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 62,
     "report_pdf_url": "/uploads/reports/smart-robot-894-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-894-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-barrier-free-826",
@@ -4573,7 +4573,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 63,
     "report_pdf_url": "/uploads/reports/barrier-free-826-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/barrier-free-826-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-941",
@@ -4644,7 +4644,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 64,
     "report_pdf_url": "/uploads/reports/project-941-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-941-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z",
+    "updated_at": "2026-09-11T07:26:50.661Z",
     "growth": "단순한 이론 조사를 넘어 3차원 공간 모션 인식 장치를 손수 설계하고 파이썬 그래픽 인터페이스와 연결하는 전 과정을 스스로 디버깅하며 완성했습니다. 센서 오차 보정과 사용자 편의성을 고려한 외형 개선 등 실용적인 창작 소프트웨어 개발의 자신감을 얻었습니다."
   },
   {
@@ -4716,7 +4716,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 65,
     "report_pdf_url": "/uploads/reports/project-787-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-787-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-robot-898",
@@ -4787,7 +4787,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 66,
     "report_pdf_url": "/uploads/reports/smart-robot-898-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-robot-898-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-smart-planter-751",
@@ -4865,7 +4865,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 67,
     "report_pdf_url": "/uploads/reports/smart-planter-751-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/smart-planter-751-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-ant-colony-sim-057",
@@ -4943,7 +4943,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 68,
     "report_pdf_url": "/uploads/reports/ant-colony-sim-057-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/ant-colony-sim-057-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-pet-care-378",
@@ -5021,7 +5021,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 69,
     "report_pdf_url": "/uploads/reports/pet-care-378-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/pet-care-378-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z",
+    "updated_at": "2026-09-11T07:26:50.661Z",
     "growth": "20만 건이 넘는 실제 유기견 공공데이터를 정제하고 머신러닝 모델을 평가하면서 실전 데이터 과학의 전 과정을 체득했습니다. 또한 데이터의 나이·체중·지역 변수를 더 세분화하면 예측 정밀도를 더욱 높일 수 있다는 점을 파악하여, 기술을 통해 생명을 살리는 실질적인 사회 문제 해결 역량과 탐구 시야를 크게 확장했습니다."
   },
   {
@@ -5100,7 +5100,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 70,
     "report_pdf_url": "/uploads/reports/ping-pong-ai-408-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/ping-pong-ai-408-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-game-development-579",
@@ -5171,7 +5171,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 71,
     "report_pdf_url": "/uploads/reports/game-development-579-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/game-development-579-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-cube-solver-105",
@@ -5249,7 +5249,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 72,
     "report_pdf_url": "/uploads/reports/cube-solver-105-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/cube-solver-105-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-ship-survival-ai-530",
@@ -5326,7 +5326,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 73,
     "report_pdf_url": "/uploads/reports/ship-survival-ai-530-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/ship-survival-ai-530-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-commute-predictor-853",
@@ -5397,7 +5397,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 74,
     "report_pdf_url": "/uploads/reports/commute-predictor-853-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/commute-predictor-853-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-265",
@@ -5475,7 +5475,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 75,
     "report_pdf_url": "/uploads/reports/project-265-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-265-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-vocab-learner-229",
@@ -5553,7 +5553,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 76,
     "report_pdf_url": "/uploads/reports/vocab-learner-229-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/vocab-learner-229-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z",
+    "updated_at": "2026-09-11T07:26:50.661Z",
     "growth": "다양한 교재의 폰트와 인쇄 상태에 따라 발생하는 OCR 인식 오류를 진단하고, 번역 검증 및 유사 자모 오인 방지 알고리즘을 모색하면서 실제 사용자의 불편을 해소하는 실용적 소프트웨어 엔지니어링 역량을 크게 함양했습니다."
   },
   {
@@ -5632,7 +5632,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 77,
     "report_pdf_url": "/uploads/reports/eclipse-simulator-969-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/eclipse-simulator-969-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-contract-analyzer-400",
@@ -5708,7 +5708,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 78,
     "report_pdf_url": "/uploads/reports/contract-analyzer-400-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/contract-analyzer-400-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-photo-classifier-693",
@@ -5779,7 +5779,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 79,
     "report_pdf_url": "/uploads/reports/photo-classifier-693-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/photo-classifier-693-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-793",
@@ -5849,7 +5849,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 80,
     "report_pdf_url": "/uploads/reports/project-793-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-793-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-792-2",
@@ -5920,7 +5920,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 81,
     "report_pdf_url": "/uploads/reports/project-792-2-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-792-2-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-project-937-2",
@@ -5991,7 +5991,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 82,
     "report_pdf_url": "/uploads/reports/project-937-2-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/project-937-2-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-digital-wellness-599",
@@ -6062,7 +6062,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 83,
     "report_pdf_url": "/uploads/reports/digital-wellness-599-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/digital-wellness-599-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-recycling-cleaning-robot-319",
@@ -6133,7 +6133,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 84,
     "report_pdf_url": "/uploads/reports/recycling-cleaning-robot-319-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/recycling-cleaning-robot-319-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
   },
   {
     "id": "p-flower-dictionary-584",
@@ -6204,6 +6204,77 @@ export const SAMPLE_PROJECTS: Project[] = [
     "display_order": 85,
     "report_pdf_url": "/uploads/reports/flower-dictionary-584-report.pdf",
     "presentation_pdf_url": "/uploads/manuals/flower-dictionary-584-manual.pdf",
-    "updated_at": "2026-09-11T07:21:20.341Z"
+    "updated_at": "2026-09-11T07:26:50.661Z"
+  },
+  {
+    "id": "p-carbon-neutral-fan-632",
+    "title": "에너지 절약형 탄소중립 로봇 팬 시스템",
+    "slug": "carbon-neutral-fan-632",
+    "subtitle": "CO2 농도와 조도 조건을 결합한 아두이노 기반 에너지 절약형 온실가스 자동 정화 팬 시스템",
+    "team_name": "한밭초",
+    "student_display_names": [
+      "양*찬 (초5)"
+    ],
+    "grade": "초등학교 5학년",
+    "program": "대전교육정보원정보영재교육원 로봇고급 과정",
+    "year": 2026,
+    "category": "로봇고급",
+    "tags": [
+      "로봇고급",
+      "탄소중립",
+      "아두이노",
+      "환경센서",
+      "에너지절약"
+    ],
+    "question": "이산화탄소 농도와 조도 조건을 결합하여 필요한 때만 작동하는 에너지 절약형 온실가스 정화 로봇 팬을 만들 수 있을까?",
+    "summary": "기후위기 대응과 공장 주변 온실가스 관리를 위해 CO2 센서와 조도센서를 연동하여, 기준 농도 초과 시에만 작동하고 야간 비작업 시간대에는 전력을 절감하는 탄소중립 로봇 팬 시스템을 개발했다.",
+    "motivation": "기후위기 대응과 공장 주변의 효율적인 온실가스 관리 필요성에 주목하였다. 단순 환기 장치에서 나아가, CO2 농도와 주변 조도를 함께 판단하여 필요한 때만 팬이 작동하는 에너지 절약형 시스템을 설계하고자 탐구를 시작하였다.",
+    "description": "에듀메이커 보드와 아두이노를 기반으로 MH-Z19 이산화탄소 센서, 조도 센서(CdS), DC 모터 팬을 연동하였다. 이산화탄소 농도가 1000ppm을 초과할 때 제어 알고리즘에 따라 DC 모터 팬이 자동 회전하며, 조도 센서 측정값이 500 미만인 어두운 비작업 시간대에는 팬 작동을 제한하여 불필요한 전력 소모를 줄이도록 복합 제어 알고리즘을 구현하였다. 또한 사용자가 시리얼 모니터를 통해 목표 회수 횟수를 직접 설정하고 달성 여부를 알림으로 확인할 수 있는 기능을 개발하였다.",
+    "reflection": "이산화탄소 농도와 조도 조건을 결합한 복합 자동 제어 시스템이 의도대로 정확히 작동함을 확인하였다. 특히 비작업 시간에는 팬 구동을 제한하여 효율적인 에너지 절약형 온실가스 제어 가능성을 입증했다.",
+    "next_question": "실제 이산화탄소 흡착 필터를 장착하여 정화 전후의 농도 감소율을 수치화하고, 메탄가스나 미세먼지 등 복합 온실가스 센서 및 RTC 실시간 시계 모듈을 연동한 고도화 시스템으로 발전시킬 수 있을까?",
+    "thumbnail_url": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80",
+    "poster_url": "/posters/carbon-neutral-fan-632.jpg",
+    "report_url": "/uploads/reports/carbon-neutral-fan-632-report.pdf",
+    "manual_url": "/uploads/manuals/carbon-neutral-fan-632-manual.pdf",
+    "report_pdf_url": "/uploads/reports/carbon-neutral-fan-632-report.pdf",
+    "presentation_pdf_url": "/uploads/manuals/carbon-neutral-fan-632-manual.pdf",
+    "created_at": "2026-09-04T00:00:00Z",
+    "processes": [
+      {
+        "id": "step-1",
+        "project_id": "p-carbon-neutral-fan-632",
+        "title": "아이디어 구상 및 복합 센서 제어 회로 설계",
+        "description": "기후위기 대응을 위한 온실가스 배출 관리 필요성을 분석하고, 에듀메이커 보드에 MH-Z19 이산화탄소 센서, 조도 센서, DC 모터 팬을 배치하는 하드웨어 회로도 및 핀맵 구성",
+        "display_order": 1
+      },
+      {
+        "id": "step-2",
+        "project_id": "p-carbon-neutral-fan-632",
+        "title": "이산화탄소 및 조도 복합 조건 제어 알고리즘 구현",
+        "description": "아두이노 IDE를 활용하여 CO2 농도 1000ppm 초과 감지 및 조도 500 기준 주야간 작업시간 판별 if문 복합 제어 로직과 시리얼 모니터 통신 코딩",
+        "display_order": 2
+      },
+      {
+        "id": "step-3",
+        "project_id": "p-carbon-neutral-fan-632",
+        "title": "센서 감지 테스트 및 사용자 목표 회수 알림 구현",
+        "description": "날숨 노출 실험을 통해 실시간 100~200ppm 농도 변화에 따른 모터 팬 자동 구동을 검증하고, 시리얼 모니터로 목표 회수 횟수(4회) 달성 알림 기능 테스트",
+        "display_order": 3
+      },
+      {
+        "id": "step-4",
+        "project_id": "p-carbon-neutral-fan-632",
+        "title": "실험 결과 분석 및 에너지 절약 탄소중립 모델 도출",
+        "description": "비작업 시간대 팬 작동 제한을 통한 전력 절감 효과를 검증하고, 흡착 필터 결합 및 복합 가스 센서 확장을 위한 발전 과제 도출",
+        "display_order": 4
+      }
+    ],
+    "likes": 0,
+    "cheers": 0,
+    "bookmarks": 0,
+    "is_public": true,
+    "published": true,
+    "display_order": 86,
+    "updated_at": "2026-09-11T07:04:13.252Z"
   }
 ];

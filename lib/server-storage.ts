@@ -20,32 +20,45 @@ export function isProjectPublic(project: { published?: boolean; is_public?: bool
 }
 
 async function loadProjectsFromDisk(): Promise<Project[]> {
-  // 1. Check /tmp store first (for serverless environments like Vercel where process.cwd is read-only)
+  let diskProjects: Project[] | null = null;
+  let diskMtime = 0;
+
+  // 1. Check local data/projects-store.json (source of truth from git deployment)
   try {
-    if (fs.existsSync(TMP_STORE_PATH)) {
-      const raw = await fs.promises.readFile(TMP_STORE_PATH, "utf-8");
+    if (fs.existsSync(STORE_PATH)) {
+      const stats = await fs.promises.stat(STORE_PATH);
+      diskMtime = stats.mtimeMs;
+      const raw = await fs.promises.readFile(STORE_PATH, "utf-8");
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        memoryProjects = parsed;
-        return memoryProjects!;
+        diskProjects = parsed;
+      }
+    }
+  } catch (err) {
+    console.warn("Failed to read projects-store.json:", err);
+  }
+
+  // 2. Check /tmp store (for serverless dynamic updates on Vercel)
+  try {
+    if (fs.existsSync(TMP_STORE_PATH)) {
+      const tmpStats = await fs.promises.stat(TMP_STORE_PATH);
+      // Only prefer /tmp if it has been updated MORE RECENTLY than the deployed codebase file
+      if (tmpStats.mtimeMs > diskMtime) {
+        const raw = await fs.promises.readFile(TMP_STORE_PATH, "utf-8");
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          memoryProjects = parsed;
+          return memoryProjects!;
+        }
       }
     }
   } catch (err) {
     // ignore
   }
 
-  // 2. Check local data/projects-store.json
-  try {
-    if (fs.existsSync(STORE_PATH)) {
-      const raw = await fs.promises.readFile(STORE_PATH, "utf-8");
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        memoryProjects = parsed;
-        return memoryProjects!;
-      }
-    }
-  } catch (err) {
-    console.warn("Failed to read projects-store.json, using fallback:", err);
+  if (diskProjects) {
+    memoryProjects = diskProjects;
+    return memoryProjects!;
   }
 
   // 3. Fallback to sample-projects.ts data
