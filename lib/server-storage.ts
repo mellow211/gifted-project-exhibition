@@ -6,18 +6,20 @@ import { SAMPLE_PROJECTS } from "@/data/sample-projects";
 const STORE_PATH = path.join(process.cwd(), "data", "projects-store.json");
 
 let memoryProjects: Project[] | null = null;
+let lastMtime = 0;
 
 async function loadProjectsFromDisk(): Promise<Project[]> {
-  if (memoryProjects) {
-    return memoryProjects;
-  }
-
   try {
     if (fs.existsSync(STORE_PATH)) {
+      const stats = await fs.promises.stat(STORE_PATH);
+      if (memoryProjects && stats.mtimeMs === lastMtime) {
+        return memoryProjects;
+      }
       const raw = await fs.promises.readFile(STORE_PATH, "utf-8");
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed) && parsed.length > 0) {
         memoryProjects = parsed;
+        lastMtime = stats.mtimeMs;
         return memoryProjects!;
       }
     }
@@ -33,6 +35,10 @@ async function loadProjectsFromDisk(): Promise<Project[]> {
       await fs.promises.mkdir(dir, { recursive: true });
     }
     await fs.promises.writeFile(STORE_PATH, JSON.stringify(memoryProjects, null, 2), "utf-8");
+    if (fs.existsSync(STORE_PATH)) {
+      const stats = await fs.promises.stat(STORE_PATH);
+      lastMtime = stats.mtimeMs;
+    }
   } catch (err) {
     console.warn("Failed to write initial projects-store.json:", err);
   }
@@ -48,6 +54,10 @@ async function persistProjects(projects: Project[]): Promise<void> {
       await fs.promises.mkdir(dir, { recursive: true });
     }
     await fs.promises.writeFile(STORE_PATH, JSON.stringify(projects, null, 2), "utf-8");
+    if (fs.existsSync(STORE_PATH)) {
+      const stats = await fs.promises.stat(STORE_PATH);
+      lastMtime = stats.mtimeMs;
+    }
   } catch (err) {
     console.error("Failed to persist projects-store.json:", err);
   }
