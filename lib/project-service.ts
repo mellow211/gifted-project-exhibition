@@ -132,7 +132,7 @@ export async function getRelatedProjects(currentSlug: string, category: string, 
 }
 
 export async function getExhibitionStats(): Promise<ExhibitionStats> {
-  const projects = await getAllProjects();
+  const projects = await getAllProjects(true);
   const totalProjects = projects.length;
 
   // Calculate unique categories

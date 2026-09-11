@@ -129,20 +129,26 @@ function ProjectsContent() {
           </div>
           <div className="space-y-1">
             <h3 className="text-base font-bold text-navy">
-              검색 조건에 맞는 프로젝트를 찾지 못했습니다.
+              {allProjects.length === 0
+                ? "현재 전시관 준비 중입니다."
+                : "검색 조건에 맞는 프로젝트를 찾지 못했습니다."}
             </h3>
             <p className="text-xs text-navy-500">
-              다른 키워드로 검색하거나 필터를 재설정해 보세요.
+              {allProjects.length === 0
+                ? "영재 학생들의 연구 결과물이 곧 공개될 예정입니다. 잠시만 기다려 주세요."
+                : "다른 키워드로 검색하거나 필터를 재설정해 보세요."}
             </p>
           </div>
-          <button
-            type="button"
-            onClick={handleResetFilters}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-navy text-white text-xs font-semibold hover:bg-navy-800 transition-colors shadow-sm"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>전체 프로젝트 보기</span>
-          </button>
+          {allProjects.length > 0 && (
+            <button
+              type="button"
+              onClick={handleResetFilters}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-navy text-white text-xs font-semibold hover:bg-navy-800 transition-colors shadow-sm"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>전체 프로젝트 보기</span>
+            </button>
+          )}
         </div>
       )}
     </div>
